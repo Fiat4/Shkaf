@@ -1,12 +1,16 @@
+import { useState } from "react";
+
 const AboutUs: React.FC = () => {
+    const [toggletop, setToggletop] = useState(false);
+    const [togglebottom, setTogglebottom] = useState(false);
     return (
         <>
 
         <section className="about_us">
             <div className="container_about">
                 <div className="text-with-line">
-                    <div className="text-wrapper">
-                        <p className="text_11">О НАС</p>
+                    <div className="text-wrapper ">
+                        <p className="text_11 mainpage-title">О НАС</p>
                     </div>
                 </div>
                 
@@ -15,20 +19,93 @@ const AboutUs: React.FC = () => {
                     
                     <div className="text-block">
                         <article className="section">
-                            <p className="section-text">
+                            <h4 className="section-text mobile-new-primary">
                                 О Locker Wood — мебель, в которую влюбляются <br/>
                                 Приветствуем вас в Locker Wood — молодой, но страстно увлечённой мебельной мастерской, где каждая деталь создаётся с мыслью о вас. <br/><br/>
                                 Мы не просто делаем мебель — мы создаём уют, характер и настроение. Наша философия проста: качество, стиль и душевность в каждом изделии. Дерево — наш главный союзник, а вдохновение — ваш комфорт.
-                            </p>
+                            </h4>
                         </article>
                         
                         <img src="./img/about_cont.jpg" alt="О нас" className="image_about_cont"/>
                         <p className="section-title"><span>ПОЧЕМУ</span> ВЫБИРАЮТ <br/>ИМЕННО<span> НАС</span></p>
                     </div>
                 </div>
+                <img src="/img/sofa.png" alt="О нас" className="mobile-img-about"/>
             </div>
         </section>
-             <section className="about_us">
+        <div className="why-us">
+            <div className="why-us-caption">
+                <div className="why-us-top">
+                <p className="mainpage-title green">ПОЧЕМУ </p>
+                <p className="mainpage-title">ВЫБИРАЮТ</p>
+            </div>
+            <div className="why-us-bottom">
+                <p className="mainpage-title">ИМЕННО </p>
+                <p className="mainpage-title green">НАС</p>
+                <div className="svg-arrow">
+                    <svg viewBox="0 0 100 20" preserveAspectRatio="none">
+                        <line x1="0" y1="10" x2="95.4" y2="10" stroke="#BADD7F" stroke-width="1"/>
+                        <line x1="95" y1="10" x2="90" y2="5" stroke="#BADD7F" stroke-width="1"/>
+                        <line x1="95" y1="10" x2="90" y2="15" stroke="#BADD7F" stroke-width="1"/>
+                    </svg>
+                </div>
+            </div>
+            </div>
+            
+            <div className="collapsible-card">
+                <div
+                id="header"
+                className="collapsible-header"
+                onClick={() => {
+                    setToggletop(prev => {
+                    return !prev;
+                    });
+                }}>
+                    <h4 className="mobile-new-secondary grid-centered">ПОМОЖЕМ С ИДЕЕЙ</h4>
+                    <i className={`fa-solid fa-chevron-up arrow-icon-top ${toggletop ? "expanded" : ""}`} />
+                </div>
+                <div
+                className="collapsible-content"
+                style={{
+                    height: toggletop ? "10rem" : "0px",
+                    paddingBottom: toggletop ? "5%" : "0px",
+                }}>
+                    <h4 className="mobile-new-secondary">Мы гарантируем высокое качество и экологичность нашей мебели. Используем только лучшие материалы, чтобы вы могли наслаждаться комфортом и безопасностью в вашем доме.</h4>
+                </div>
+            </div>
+            <div className="why-us-img-container">
+                <img className="why-us-img" src="./img/sofa.png"></img>
+            </div>
+            <div className="collapsible-card">
+                <div
+                id="header"
+                className="collapsible-header"
+                onClick={() => {
+                    setTogglebottom(prev => {
+                    return !prev;
+                    });
+                }}>
+                    <h4 className="mobile-new-secondary grid-centered">МЫ ЗА КАЧЕСТВО</h4>
+                    <i className={`fa-solid fa-chevron-up arrow-icon-bottom ${togglebottom ? "expanded" : ""}`} />
+                </div>
+                <div
+                className="collapsible-content"
+                style={{
+                    height: togglebottom? "10rem" : "0px",
+                    paddingBottom: togglebottom ? "5%" : "0px",
+                }}>
+                    <h4 className="mobile-new-secondary">Мы гарантируем высокое качество и экологичность нашей мебели. Используем только лучшие материалы, чтобы вы могли наслаждаться комфортом и безопасностью в вашем доме.</h4>
+                </div>
+            </div>
+            <div className="why-us-img-container">
+                <img className="why-us-img" src="./img/sofa.png"></img>
+            </div>
+        </div>
+
+        
+        
+
+        <section className="about_us desktop-only">
             <div className="container_about">
                
                 <div id="con_content" className="conten">
@@ -60,7 +137,7 @@ const AboutUs: React.FC = () => {
         </section>
 
 
-        <section className="about_us">
+        <section className="about_us desktop-only">
             <div className="container_about">
                 <div id="con_content" className="conten">
                     <div id="text-with-line_content_1" className="text-with-line">

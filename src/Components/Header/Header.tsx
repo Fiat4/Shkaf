@@ -46,6 +46,22 @@ const Header: FC = () => {
 					<ul className="nav-primary container_2">
 						<li>
 							<Link to="/" className="nav-link" id="header_logo"/>
+							<div className="mobile-icons-container">
+								<Link to="cart" id="heart">
+								<i className="fa-regular fa-heart"></i>
+								</Link>
+								<button 
+								className={`header_menu ${mobileMenuOpen ? 'active' : ''}`}
+								onClick={toggleMobileMenu}
+								aria-label="Открыть меню"
+							>
+								<span></span>
+								<span></span>
+								<span></span>
+							</button>
+							</div>
+							
+							
 						</li>
 						<div className="mobile-phone">
 							<span>+7 (999) 999-99-99</span>
@@ -53,34 +69,25 @@ const Header: FC = () => {
 						<div className="search-container">
 							<input type="text" id="search_mobile" placeholder="Поиск" />
 							<nav className="mobile-nav-tabs">
-								<a href="#catalog">КАТАЛОГ</a>
+								{/* <a href="#catalog">КАТАЛОГ</a> */}
 								<a href="#about">О НАС</a>
 								<a href="#sales">АКЦИИ</a>
 								<a href="#new">НОВИНКИ</a>
 								<a href="#reviews">ОТЗЫВЫ</a>
 							</nav>
 						</div>
-						<button 
-							className={`header_menu ${mobileMenuOpen ? 'active' : ''}`}
-							onClick={toggleMobileMenu}
-							aria-label="Открыть меню"
-						>
-							<span></span>
-							<span></span>
-							<span></span>
-						</button>
 						{/* <li> */}
-							<Link to="asgai" className="nav-link" onMouseEnter={() => setSub(true)} onMouseLeave={() => setSub(false)}>
+							<Link to="asgai" className="nav-link desktop-nav-link" onMouseEnter={() => setSub(true)} onMouseLeave={() => setSub(false)}>
 								КАТАЛОГ
 							</Link>
 						{/* </li> */}
 						{/* <li> */}
-							<Link to="asnflaskng" className="nav-link">
+							<Link to="asnflaskng" className="nav-link desktop-nav-link">
 								О НАС
 							</Link>
 						{/* </li> */}
 						{/* <li> */}
-							<Link to="xyu" className="nav-link" onClick={(e) => {
+							<Link to="xyu" className="nav-link desktop-nav-link" onClick={(e) => {
 								e.preventDefault();
 								window.scrollTo({
 									top: document.documentElement.scrollHeight,
@@ -91,23 +98,23 @@ const Header: FC = () => {
 							</Link>
 						{/* </li> */}
 						{/* <li> */}
-							<Link to="asfas" className="nav-link">
+							<Link to="asfas" className="nav-link desktop-nav-link">
 								АКЦИИ
 							</Link>
 						{/* </li> */}
 						{/* <li> */}
-							<Link to="asfasf" className="nav-link">
+							<Link to="asfasf" className="nav-link desktop-nav-link">
 								НОВИНКИ
 							</Link>
 						{/* </li> */}
 						{/* <li> */}
-							<Link to="review" className="nav-link">
+							<Link to="review" className="nav-link desktop-nav-link">
 								ОТЗЫВЫ
 							</Link>
 						{/* </li> */}
 
 						<li className="icons-container">
-							<Link to="cart" id="heart">
+							<Link to="cart" id="heart" className="desktop-heart">
 								<i className="fa-regular fa-heart"></i>
 							</Link>
 							<div className="phone-container">

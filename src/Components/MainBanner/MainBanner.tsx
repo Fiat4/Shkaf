@@ -7,7 +7,16 @@ const MainBanner = () => {
             <div className="foto_container">
                 <div className="consultation-form">
                     <h2 className="form-title">ОСТАВЬТЕ ЗАЯВКУ НА</h2>
-                    <h3 className="form-subtitle">КОНСУЛЬТАЦИЮ</h3>
+                    <div className="form-subtitle">
+                        <div className="svg-arrow">
+                            <svg viewBox="0 0 100 20" preserveAspectRatio="none">
+                                <line x1="0" y1="10" x2="95.4" y2="10" stroke="#BADD7F" stroke-width="1"/>
+                                <line x1="95" y1="10" x2="90" y2="5" stroke="#BADD7F" stroke-width="1"/>
+                                <line x1="95" y1="10" x2="90" y2="15" stroke="#BADD7F" stroke-width="1"/>
+                            </svg>
+                        </div>
+                        <h3>КОНСУЛЬТАЦИЮ</h3>
+                    </div>
                     <form>
                         <input type="text" className="form-input" placeholder="Имя" required/>
                         <input type="email" className="form-input" placeholder="Почта" required/>
@@ -21,7 +30,7 @@ const MainBanner = () => {
                     </form>
                 </div>
                 <div className="banner-content">
-                    <h2 className="banner-title">ГОТОВЫ РЕАЛИЗОВАТЬ<br/>ВАШУ ИДЕЮ МЕЧТЫ</h2>
+                    <h2 className="banner-title mainpage-title">ГОТОВЫ РЕАЛИЗОВАТЬ<br/>ВАШУ ИДЕЮ МЕЧТЫ</h2>
                 </div>
             </div>
         </section>

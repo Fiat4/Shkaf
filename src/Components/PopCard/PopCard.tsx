@@ -16,7 +16,12 @@ const PopCard: FC<PopCardProps> = ({ title, description, img, price }) => {
 			</div>
 			<h3 className="product-title">{title}</h3>
 			<p className="product-description">{description}</p>
-			<span className="product-price">{price} руб</span>
+			<div className="mobile-new-price-container">
+				<span className="product-price">{price} руб</span>
+				<button className="mobile-new-fav-button">
+					<i className="fa-regular fa-heart"></i>
+				</button>
+			</div>
 		</Link>
 	);
 };

@@ -8,13 +8,13 @@ interface PopCatsProps {
 const PopCats: React.FC<PopCatsProps> = ({ scrollClass }) => {
 	const [activeIndex, setActiveIndex] = useState(1);
 	const [categoryItems] = useState([
-		{ id: 1, image: "./img/bed.jpg", alt: "Кровати" },
-		{ id: 2, image: "./img/shkaf.jpg", alt: "Шкафы" },
-		{ id: 3, image: "./img/kit.jpg", alt: "Кухни" },
-		{ id: 4, image: "./img/wal.jpg", alt: "Стенки" },
-		{ id: 5, image: "./img/wal.jpg", alt: "Стенки" },
-		{ id: 6, image: "./img/wal.jpg", alt: "Стенки" },
-		{ id: 7, image: "./img/wal.jpg", alt: "Стенки" },
+		{ id: 1, image: "./img/bed.jpg", alt: "Кровати", name: "nigga", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", price: "10000", href: "#", new: true},
+		{ id: 2, image: "./img/shkaf.jpg", alt: "Шкафы", name: "nigga", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", price: "10000", href: "#", new: false},
+		{ id: 3, image: "./img/kit.jpg", alt: "Кухни", name: "nigga", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", price: "10000", href: "#", new: false},
+		{ id: 4, image: "./img/wal.jpg", alt: "Стенки", name: "nigga", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", price: "10000", href: "#", new: false},
+		{ id: 5, image: "./img/wal.jpg", alt: "Стенки", name: "nigga", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", price: "10000", href: "#", new: false},
+		{ id: 6, image: "./img/wal.jpg", alt: "Стенки", name: "nigga", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", price: "10000", href: "#", new: false},
+		{ id: 7, image: "./img/wal.jpg", alt: "Стенки", name: "nigga", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", price: "10000", href: "#", new: false},
 	]);
 
 	useEffect(() => {
@@ -148,12 +148,34 @@ const PopCats: React.FC<PopCatsProps> = ({ scrollClass }) => {
 	};
 
 	return (
-		 <section className="popular-section">
+		 <section id="new" className="popular-section">
             <div className="katalog_container">
-                <h2 className="products-title">НОВИНКИ</h2>
+                <h2 className="mainpage-title products-title">НОВИНКИ</h2>
             </div>
-
-            <div className="category-container">
+			<div className="mobile-new-container">
+				{categoryItems.map((item, index) => (
+					<div className="mobile-new-item">
+						<div className="mobile-new-img-wrapper">
+							<img className="mobile-new-img" src={item.image} alt={item.alt} />
+						</div>
+						<div className="mobile-new-name-container">
+							<h4 className="mobile-new-primary">{item.name}</h4>
+							{item.new && (
+								<h5 className="mobile-new-secondary mobile-new-tag">НОВИНКА</h5>
+							)}
+						</div>
+						<h5 className="mobile-new-secondary">{item.description}</h5>
+						<div className="mobile-new-price-container">
+							<h4 className="mobile-new-price">{item.price} руб</h4>
+							<button className="mobile-new-fav-button">
+								<i className="fa-regular fa-heart"></i>
+							</button>
+						</div>
+					</div>
+				))}
+			</div>
+			{window.innerWidth > 768 ? 
+			<div className="category-container">
                 {categoryItems.map((item, index) => (
 					<article 
 						key={item.id} 
@@ -170,7 +192,8 @@ const PopCats: React.FC<PopCatsProps> = ({ scrollClass }) => {
 						</a>
 					</article>
 				))}
-            </div>  
+            </div> : null}
+            
         </section>
 	);
 };

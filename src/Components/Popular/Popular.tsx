@@ -20,35 +20,59 @@ const Popular = () => {
 	}, []);
 	return (
 		<section className="products-section">
-			<div className="products-header">
-				<h2 className="products-title">Популярное</h2>
-				<div className="products-nav">
-					<button
-						className="nav-button prev"
-						ref={prevBtnRef}
-						onClick={() => {
-							if (productsGridRef.current) {
-								productsGridRef.current.scrollBy({
-									left: -220 * 3,
-									behavior: "smooth",
-								});
-							}
-						}}
-					></button>
-					<button
-						className="nav-button next"
-						ref={nextBtnRef}
-						onClick={() => {
-							if (productsGridRef.current) {
-								productsGridRef.current.scrollBy({
-									left: 220 * 3,
-									behavior: "smooth",
-								});
-							}
-						}}
-					></button>
-				</div>
-			</div>
+			{window.innerWidth <= 768 ? ( 
+				<div className="products-header">
+					<h2 className="products-title mainpage-title">Популярное</h2>
+					<div className="mobile-buttons-container">
+						<button
+							className="nav-button prev"
+							ref={prevBtnRef}
+							onClick={() => productsGridRef.current?.scrollBy({ left: -220 * 3, behavior: "smooth" })}
+							aria-label="Previous items"
+							>
+							<i className="fa-solid fa-chevron-left" />
+						</button>
+
+						<button
+							className="nav-button next"
+							ref={nextBtnRef}
+							onClick={() => productsGridRef.current?.scrollBy({ left: 220 * 3, behavior: "smooth" })}
+							aria-label="Next items"
+							>
+							<i className="fa-solid fa-chevron-right" />
+						</button>
+					</div>
+				</div>) : (
+				<div className="products-header">
+					<h2 className="products-title">Популярное</h2>
+					<div className="products-nav">
+						<button
+							className="nav-button prev"
+							ref={prevBtnRef}
+							onClick={() => {
+								if (productsGridRef.current) {
+									productsGridRef.current.scrollBy({
+										left: -220 * 3,
+										behavior: "smooth",
+									});
+								}
+							}}
+						></button>
+						<button
+							className="nav-button next"
+							ref={nextBtnRef}
+							onClick={() => {
+								if (productsGridRef.current) {
+									productsGridRef.current.scrollBy({
+										left: 220 * 3,
+										behavior: "smooth",
+									});
+								}
+							}}
+						></button>
+					</div>
+				</div>)}
+					
 
 			<div
 				className="products-grid"

@@ -422,11 +422,13 @@
     margin-left: 10%;
 }
 
-.review-text {
-    font-size: 1.5em;
-    font-family: 'ALS Schlange sans';
-    color: rgba(0, 0, 0, 0.8);
-    text-align: left;
+@media (min-width: 768px) {
+    .review-text {
+        font-size: 1.5em;
+        font-family: 'ALS Schlange sans';
+        color: rgba(0, 0, 0, 0.8);
+        text-align: left;
+    }
 }
 
 .review-text img {

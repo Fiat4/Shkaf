@@ -1,3 +1,16 @@
+/* @media (max-width: 768px) {
+	.foto_container::before {
+		border-radius: 0;
+		width: 100%;
+		
+	}
+	.foto_container {
+		border-radius: 0;
+		width: 100%;
+		
+	}
+}
+
 .foto_container {
 	position: relative;
 	width: clamp(90%, 95vw, 95%);
@@ -153,4 +166,4 @@
 	position: relative;
 	top: 10px;
 	left: 10px;
-}
+} */

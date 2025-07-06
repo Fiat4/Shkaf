@@ -4,7 +4,7 @@ import ReviewCard from "../ReviewCard/ReviewCard";
 const Reviews: FC = () => {
 	return (
 		<section className="reviews-section">
-			<div className="reviews-header">
+			<div className="reviews-header mainpage-title">
 				<h2>ЧТО ГОВОРЯТ НАШИ КЛИЕНТЫ</h2>
 			</div>
 
