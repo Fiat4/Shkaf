@@ -133,10 +133,18 @@ const Header: FC = () => {
 						className={`nav-secondary container_2 ${sub ? "active" : ""} ${mobileMenuOpen ? "mobile-active" : ""}`}
 						aria-label="Подкатегории"
 					>
-						<li>
+						
+						<li className="menu-button-holder">
 							<Link to="/category/closets" className="nav-link" onClick={() => setMobileMenuOpen(false)}>
 								Шкафы
 							</Link>
+							<button 
+								className={`header_menu ${mobileMenuOpen ? 'active' : ''}`}
+								onClick={toggleMobileMenu}
+								aria-label="Открыть меню"
+							>
+								<i className="fa-solid fa-xmark"></i>
+							</button>
 						</li>
 						<li>
 							<Link to="/category/kitchens" className="nav-link" onClick={() => setMobileMenuOpen(false)}>

@@ -991,6 +991,16 @@ main {
         justify-content: space-between;
     }
 
+    .menu-button-holder {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .menu-button-holder button {
+        color: white;
+        font-size: 1.2rem;
+        margin-right: 5%;
+    }
     .mobile-new-primary {
         font-weight: 300;
     }
