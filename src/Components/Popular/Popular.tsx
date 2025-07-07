@@ -1,28 +1,47 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import PopCard from "./../PopCard/PopCard";
-const Popular = () => {
-	let prevBtnRef = useRef<HTMLButtonElement>(null),
-		nextBtnRef = useRef<HTMLButtonElement>(null),
-		productsGridRef = useRef<HTMLDivElement>(null);
 
-	function updateButtonStates() {
-		if (prevBtnRef.current && productsGridRef.current && nextBtnRef.current) {
-			prevBtnRef.current.disabled = productsGridRef.current.scrollLeft <= 0;
-			nextBtnRef.current.disabled =
-				productsGridRef.current.scrollLeft >=
-				productsGridRef.current.scrollWidth -
-					productsGridRef.current.clientWidth;
-		}
-	}
+const useWindowWidth = () => {
+  const [width, setWidth] = useState<number | null>(null);
 
-	useEffect(() => {
-		updateButtonStates();
-	}, []);
+  useEffect(() => {
+    const handleResize = () => setWidth(window.innerWidth);
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  return width;
+};
+
+const Popular = ({ dynamicText = "ПОПУЛЯРНОЕ" }) => {
+  const windowWidth = useWindowWidth();
+  const isMobile = windowWidth !== null && windowWidth <= 768;
+
+  const prevBtnRef = useRef<HTMLButtonElement>(null);
+  const nextBtnRef = useRef<HTMLButtonElement>(null);
+  const productsGridRef = useRef<HTMLDivElement>(null);
+
+  function updateButtonStates() {
+    if (prevBtnRef.current && productsGridRef.current && nextBtnRef.current) {
+      prevBtnRef.current.disabled = productsGridRef.current.scrollLeft <= 0;
+      nextBtnRef.current.disabled =
+        productsGridRef.current.scrollLeft >=
+        productsGridRef.current.scrollWidth - productsGridRef.current.clientWidth;
+    }
+  }
+
+  useEffect(() => {
+    updateButtonStates();
+  }, []);
+
+  if (windowWidth === null) return null;
 	return (
 		<section className="products-section">
-			{window.innerWidth <= 768 ? ( 
+			{isMobile ? ( 
 				<div className="products-header">
-					<h2 className="products-title mainpage-title">Популярное</h2>
+					<h2 className="products-title mainpage-title">{dynamicText}</h2>
 					<div className="mobile-buttons-container">
 						<button
 							className="nav-button prev"
@@ -44,7 +63,7 @@ const Popular = () => {
 					</div>
 				</div>) : (
 				<div className="products-header">
-					<h2 className="products-title">Популярное</h2>
+					<h2 className="products-title mainpage-title">{dynamicText}</h2>
 					<div className="products-nav">
 						<button
 							className="nav-button prev"

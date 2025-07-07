@@ -1,20 +1,28 @@
 import './MainPage.css'
 import './CartPage.css'
 import Header from '../Components/Header/Header'
+import Footer from '../Components/Footer/Footer'
+import HeadMeta from '../Components/HeadMeta/HeadMeta'
+import Popular from '../Components/Popular/Popular'
 const CartPage: React.FC = () => {
     return (
         <>
-           <Header/>
+        <HeadMeta
+				title="LW - Главная"
+				description="Магазин мебели - качественная мебель для вашего дома"
+				keywords="мебель, шкафы, кровати, кухни, стенки, интерьер"
+		/>
+        <Header/>
 
     <main className="cart-page">
         <div className="breadcrumbs">
-            <a href="Index.html">Главная</a> / <span>Избранное</span>
+            <a href="/">Главная</a> / <span>Избранное</span>
         </div>
 
         <div className="cart-container">
             <div className="cart-items">
-                <h1>ИЗБРАННОЕ</h1>
-                <button className="select-all">Выбрать все</button>
+                <h1 className='desktop-only'>ИЗБРАННОЕ</h1>
+                <button className="select-all desktop-only">Выбрать все</button>
 
                 <div className="cart-item">
                     <div className="item-image">
@@ -30,7 +38,11 @@ const CartPage: React.FC = () => {
                             <button className="quantity-btn plus">+</button>
                         </div>
                     </div>
-                    <button className="remove-item">×</button>
+                    <div className='button-wrapper'>
+                        <button className="remove-item">
+                            <i className="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
                 </div>
 
                 <div className="cart-item">
@@ -47,7 +59,11 @@ const CartPage: React.FC = () => {
                             <button className="quantity-btn plus">+</button>
                         </div>
                     </div>
-                    <button className="remove-item">×</button>
+                    <div className='button-wrapper'>
+                        <button className="remove-item">
+                            <i className="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
                 </div>
 
                 
@@ -62,7 +78,7 @@ const CartPage: React.FC = () => {
                     </div>
                     <div className="summary-row discount">
                         <span>СКИДКА НА ТОВАРЫ</span>
-                        <span>-30 000 руб</span>
+                        <span className='summary-row-discount'>-30 000 руб</span>
                     </div>
                 </div>
 
@@ -95,40 +111,9 @@ const CartPage: React.FC = () => {
             </div>
         </div>
     </main>
-    <footer className="footer">
-        <div className="footer-content_1">
-            <section className="footer-section-left">
-                <div className="footer-logo"></div>
-            </section>
-    
-            <section className="footer-section-right">
-                <button className="button_footer">
-                    Подписаться на рассылку
-                    <img className="telegram_icon" src="ic/Telegram.svg" alt="Телеграм"/>
-                </button>
-                <p>Телефон: +7 (999) 999-99-99</p>
-                <p>Email: info@example.com</p>
-                <address>Адрес: ул. Пушкина, д. 1, Москва, Россия</address>
-            </section>
-        </div>
-        <hr/>
-        <div className="footer-content_2">
-            <section className="footer-section-social">
-                <p>СОЦИАЛЬНЫЕ СЕТИ:</p>
-            </section>
-            <section className="footer-section-networks">
-                <a href="#"><i className="fa-brands fa-telegram"></i></a>
-                <a href="#" id="insta"><i className="fa-brands fa-instagram"></i></a>
-                <a href="#" id="vk"><i className="fa-brands fa-vk"></i></a>
-            </section>
-            <section className="footer-section-copyright">
-                <p>© 2025 LockerWood. Все права защищены.</p>
-            </section>
-        </div>
-
-        
-    </footer>
-        </>
+    <Popular dynamicText="МОЖЕТ ПОНРАВИТЬСЯ"/>
+    <Footer/>
+    </>
     )
 }
 
