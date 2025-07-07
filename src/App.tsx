@@ -5,6 +5,11 @@ import CategoryPage from "./pages/CategoryPage";
 import MainPage from "./pages/MainPage";
 import ReviewsPage from "./pages/ReviewsPage";
 import ProductPage from "./pages/ProductPage";
+import AdminPage from "./pages/AdminPage";
+import AdminProducts from "./Components/AdminProducts/AdminProducts";
+import AdminPopularProducts from "./Components/AdminPopularProducts/AdminPopularProducts";
+import AdminNew from "./Components/AdminNew/AdminNew";
+import AdminMain from "./Components/AdminMain/AdminMain";
 
 function App() {
 	return (
@@ -21,6 +26,12 @@ function App() {
 			</Route>
 			<Route path="product" element={<ProductPage/>}/>
 			<Route path="review" element={<ReviewsPage/>}/>
+			<Route path="admin" element={<AdminPage/>}>
+				<Route index element={<AdminMain/>}/>
+				<Route path="prods" element={<AdminProducts/>}/>
+				<Route path="pops" element={<AdminPopularProducts/>}/>
+				<Route path="new" element={<AdminNew/>}/>
+			</Route>
 			<Route path="*" element={<Navigate to="/" replace/>}/> 
 		</Routes>
 	)
