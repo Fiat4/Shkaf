@@ -4,10 +4,6 @@ import { useEffect, useState } from 'react'
 const AdminPage:React.FC = () => {
     const [active, setActive] = useState<string>()
     const param = useLocation()
-    useEffect(() => {
-        // setActive(param)
-        console.log(param)
-    }, [])
     return (
         <>
         <div className="sidebar">
@@ -17,7 +13,7 @@ const AdminPage:React.FC = () => {
             <li><NavLink to="/admin/prods"><i className="fas fa-box"></i> Все товары</NavLink></li>
             <li><NavLink to="/admin/pops"><i className="fas fa-star"></i> Популярное</NavLink></li>
             <li><NavLink to="/admin/new"><i className="fas fa-clock"></i> Новинки</NavLink></li>
-            <li><NavLink to="#" className="categories-link"><i className="fas fa-tags"></i> Категории</NavLink>
+            <li><NavLink to="/admin/cats" className="categories-link"><i className="fas fa-tags"></i> Категории</NavLink>
                 <ul>
                     <li><a href="#" data-category="Шкафы">Шкафы</a></li>
                     <li><a href="#" data-category="Кровати">Кровати</a></li>

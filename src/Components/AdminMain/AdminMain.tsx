@@ -1,141 +1,123 @@
+import { Link } from 'react-router-dom'
+import './AdminMain.css'
+import { useEffect } from 'react'
 const AdminMain: React.FC = () => {
     return (
         <>
             <div className="main-content">
         <div className="content-header">
-            <h1><i className="fas fa-box"></i> Управление товарами</h1>
+            <h1><i className="fas fa-home"></i> Главная</h1>
             <div className="header-right">
-                <div className="total-products">
-                    <i className="fas fa-cubes"></i>
-                    Всего товаров: <span id="totalProductsCount">0</span>
+                <div className="date">
+                    
+                    <i className="fas fa-calendar"></i>
+                    <span id="currentDate">{new Date().toLocaleString('ru', {
+                        weekday: "long",
+                        day: '2-digit',
+                        month:"long",
+                        year: 'numeric'
+                        })}</span>
                 </div>
-                <button className="add-button" id="addProductBtn">
-                    <i className="fas fa-plus"></i> Добавить товар
-                </button>
             </div>
         </div>
 
-        <div className="content-table">
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Название</th>
-                        <th>Категория</th>
-                        <th>Цена</th>
-                        <th>Наличие</th>
-                        <th>Действия</th>
-                    </tr>
-                </thead>
-                <tbody id="productTableBody">
-                    {/* <!-- Товары будут добавляться динамически --> */}
-                </tbody>
-            </table>
-        </div>
-    </div>
+        <div className="dashboard-grid">
+            {/* <!-- Статистические карточки --> */}
+            <div className="stat-card">
+                <div className="stat-icon">
+                    <i className="fas fa-box"></i>
+                </div>
+                <div className="stat-info">
+                    <h3>Всего товаров</h3>
+                    <p id="totalProducts">0</p>
+                </div>
+            </div>
 
-    {/* <!-- Модальное окно добавления/редактирования товара --> */}
-    <div className="modal" id="productModal">
-        <div className="modal-content">
-            <div className="modal-header">
-                <h2 className="modal-title" id="modalTitle"><i className="fas fa-plus-circle"></i> Добавление товара</h2>
-                <button className="close-button" id="closeModal">&times;</button>
+            <div className="stat-card">
+                <div className="stat-icon">
+                    <i className="fas fa-star"></i>
+                </div>
+                <div className="stat-info">
+                    <h3>Популярные товары</h3>
+                    <p id="popularProducts">0</p>
+                </div>
             </div>
-            <form id="productForm">
-                <div className="form-group">
-                    <label htmlFor="productName"><i className="fas fa-tag"></i> Название товара</label>
-                    <input type="text" id="productName" required/>
-                </div>
-                <div className="form-group">
-                    <label htmlFor="productCategory"><i className="fas fa-folder"></i> Категория</label>
-                    <select id="productCategory" required>
-                        <option value="">Выберите категорию</option>
-                        <option value="Шкафы">Шкафы</option>
-                        <option value="Кровати">Кровати</option>
-                        <option value="Кухни">Кухни</option>
-                        <option value="Стенки">Стенки</option>
-                    </select>
-                </div>
-                <div className="form-group">
-                    <label htmlFor="productPrice"><i className="fas fa-ruble-sign"></i> Цена</label>
-                    <input type="number" id="productPrice" required/>
-                </div>
-                <div className="form-group">
-                    <label htmlFor="productStock"><i className="fas fa-box"></i> Наличие</label>
-                    <select id="productStock" required>
-                        <option value="В наличии">В наличии</option>
-                        <option value="Нет в наличии">Нет в наличии</option>
-                    </select>
-                </div>
-                <div className="form-group">
-                    <label htmlFor="productImage"><i className="fas fa-image"></i> Изображение товара</label>
-                    <input type="file" id="productImage" accept="image/*" required/>
-                    <div id="imagePreview" className="image-preview"></div>
-                </div>
-                <div className="form-group">
-                    <label htmlFor="productDescription"><i className="fas fa-info-circle"></i> Описание товара</label>
-                    <textarea id="productDescription" rows={10} required></textarea>
-                </div>
-                <div className="form-group">
-                    <label htmlFor="productDimensions"><i className="fas fa-ruler"></i> Размеры (мм)</label>
-                    <div className="dimensions-inputs">
-                        <input type="number" id="productWidth" placeholder="Ширина" required/>
-                        <input type="number" id="productHeight" placeholder="Высота" required/>
-                        <input type="number" id="productDepth" placeholder="Глубина" required/>
-                    </div>
-                </div>
-                <div className="form-group">
-                    <label htmlFor="productMaterials"><i className="fas fa-cube"></i> Материалы</label>
-                    <textarea id="productMaterials" rows={5} required></textarea>
-                </div>
-                <div className="form-group">
-                    <label htmlFor="productOpening"><i className="fas fa-door-open"></i> Открывание</label>
-                    <textarea id="productOpening" rows={3} required></textarea>
-                </div>
-                <div className="modal-footer">
-                    <button type="button" className="cancel-button" id="cancelBtn">
-                        <i className="fas fa-times"></i> Отмена
-                    </button>
-                    <button type="submit" className="save-button" id="saveBtn">
-                        <i className="fas fa-save"></i> Сохранить
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
 
-    {/* <!-- Модальное окно просмотра описания --> */}
-    <div className="modal" id="descriptionModal">
-        <div className="modal-content">
-            <div className="modal-header">
-                <h2 className="modal-title"><i className="fas fa-info-circle"></i> Описание товара</h2>
-                <button className="close-button" id="closeDescriptionModal">&times;</button>
+            <div className="stat-card">
+                <div className="stat-icon">
+                    <i className="fas fa-clock"></i>
+                </div>
+                <div className="stat-info">
+                    <h3>Новинки</h3>
+                    <p id="newProducts">0</p>
+                </div>
             </div>
-            <div className="description-content">
-                <p id="descriptionText"></p>
-            </div>
-            <div className="modal-footer">
-                <button className="cancel-button" id="closeDescriptionBtn">
-                    <i className="fas fa-times"></i> Закрыть
-                </button>
+
+            <div className="stat-card">
+                <div className="stat-icon">
+                    <i className="fas fa-shopping-cart"></i>
+                </div>
+                <div className="stat-info">
+                    <h3>Заказы</h3>
+                    <p id="totalOrders">0</p>
+                </div>
             </div>
         </div>
-    </div>
 
-    {/* <!-- Модальное окно просмотра фото --> */}
-    <div className="modal" id="imageModal">
-        <div className="modal-content">
-            <div className="modal-header">
-                <h2 className="modal-title"><i className="fas fa-image"></i> Фото товара</h2>
-                <button className="close-button" id="closeImageModal">&times;</button>
+        <div className="dashboard-content">
+            {/* <!-- Популярные товары --> */}
+            <div className="content-section">
+                <div className="section-header">
+                    <h2><i className="fas fa-star"></i> Популярные товары</h2>
+                    <Link to="/admin/pops" className="view-all">Все популярные <i className="fas fa-arrow-right"></i></Link>
+                </div>
+                <div className="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Название</th>
+                                <th>Категория</th>
+                                <th>Цена</th>
+                                <th>Позиция</th>
+                            </tr>
+                        </thead>
+                        <tbody id="popularProductsTable">
+                            {/* <!-- Здесь будут отображаться популярные товары --> */}
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <div className="image-content">
-                <img id="productImagePreview" src="" alt="Фото товара"/>
+
+            {/* <!-- Новинки --> */}
+            <div className="content-section">
+                <div className="section-header">
+                    <h2><i className="fas fa-clock"></i> Новинки</h2>
+                    <Link to="/admin/new" className="view-all">Все новинки <i className="fas fa-arrow-right"></i></Link>
+                </div>
+                <div className="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Название</th>
+                                <th>Категория</th>
+                                <th>Цена</th>
+                                <th>Дата добавления</th>
+                            </tr>
+                        </thead>
+                        <tbody id="newProductsTable">
+                            {/* <!-- Здесь будут отображаться новинки --> */}
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <div className="modal-footer">
-                <button className="cancel-button" id="closeImageBtn">
-                    <i className="fas fa-times"></i> Закрыть
-                </button>
+
+            <div className="dashboard-section">
+                <h2><i className="fas fa-comments"></i> Последние отзывы</h2>
+                <div className="reviews-grid">
+                    {/* <!-- Отзывы будут добавляться динамически --> */}
+                </div>
             </div>
         </div>
     </div>

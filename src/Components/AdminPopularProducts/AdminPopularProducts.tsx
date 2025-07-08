@@ -1,4 +1,7 @@
+import { useState } from "react"
+
 const AdminPopularProducts: React.FC = () => {
+    const [modal, setModal] = useState<boolean>(false)
     return (
          <>
             <div className="main-content">
@@ -9,7 +12,7 @@ const AdminPopularProducts: React.FC = () => {
                     <i className="fas fa-star"></i>
                     Популярных товаров: <span id="totalProductsCount">0</span>
                 </div>
-                <button className="add-button" id="addProductBtn">
+                <button onClick={() => setModal(true)} className="add-button" id="addProductBtn">
                     <i className="fas fa-plus"></i> Добавить в популярное
                 </button>
             </div>
@@ -36,11 +39,11 @@ const AdminPopularProducts: React.FC = () => {
     </div>
 
     {/* <!-- Модальное окно добавления/редактирования товара --> */}
-    <div className="modal" id="productModal">
+    <div onClick={(e: React.MouseEvent<HTMLDivElement>) => e.target === e.currentTarget ? setModal(false) : null} className={`modal ${modal ? 'active' : ''}`} id="productModal">
         <div className="modal-content">
             <div className="modal-header">
                 <h2 className="modal-title" id="modalTitle"><i className="fas fa-plus-circle"></i> Добавление в популярное</h2>
-                <button className="close-button" id="closeModal">&times;</button>
+                <button onClick={() => setModal(false)} className="close-button" id="closeModal">&times;</button>
             </div>
             <form id="productForm">
                 <div className="form-group">
