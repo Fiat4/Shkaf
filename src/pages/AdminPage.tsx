@@ -1,16 +1,23 @@
-import { Outlet } from 'react-router-dom'
+import { Link, NavLink, Outlet, useLocation, useParams } from 'react-router-dom'
 import './AdminPage.css'
+import { useEffect, useState } from 'react'
 const AdminPage:React.FC = () => {
+    const [active, setActive] = useState<string>()
+    const param = useLocation()
+    useEffect(() => {
+        // setActive(param)
+        console.log(param)
+    }, [])
     return (
         <>
         <div className="sidebar">
         <h2>Панель управления</h2>
         <ul>
-            <li><a href="dashboard.html"><i className="fas fa-home"></i> Главная</a></li>
-            <li><a href="admin.html" className="active"><i className="fas fa-box"></i> Все товары</a></li>
-            <li><a href="popular.html"><i className="fas fa-star"></i> Популярное</a></li>
-            <li><a href="new.html"><i className="fas fa-clock"></i> Новинки</a></li>
-            <li><a href="#" className="categories-link"><i className="fas fa-tags"></i> Категории</a>
+            <li><NavLink end to="/admin"><i className="fas fa-home"></i> Главная</NavLink></li>
+            <li><NavLink to="/admin/prods"><i className="fas fa-box"></i> Все товары</NavLink></li>
+            <li><NavLink to="/admin/pops"><i className="fas fa-star"></i> Популярное</NavLink></li>
+            <li><NavLink to="/admin/new"><i className="fas fa-clock"></i> Новинки</NavLink></li>
+            <li><NavLink to="#" className="categories-link"><i className="fas fa-tags"></i> Категории</NavLink>
                 <ul>
                     <li><a href="#" data-category="Шкафы">Шкафы</a></li>
                     <li><a href="#" data-category="Кровати">Кровати</a></li>
