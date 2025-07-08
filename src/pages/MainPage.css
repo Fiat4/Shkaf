@@ -846,7 +846,7 @@ main {
 @media (max-width: 768px) {
 
     /* --- Стили для Новинок --- */
-    .category-container {
+    /* .category-container {
         all: initial;
         display: grid !important;
         grid-template-columns: repeat(2, 1fr) !important;
@@ -858,7 +858,7 @@ main {
         width: auto !important;
         height: auto !important;
         transition: none !important;
-    }
+    } */
 
     .category-item {
         all: initial;
@@ -2862,7 +2862,7 @@ main {
 }
 
 @media (max-width: 768px) {
-    .category-container {
+    /* .category-container {
         all: initial;
         display: grid !important;
         grid-template-columns: repeat(2, 1fr) !important;
@@ -2875,7 +2875,7 @@ main {
         width: auto !important;
         height: auto !important;
         transition: none !important;
-    }
+    } */
 
     .category-item {
         all: initial;
