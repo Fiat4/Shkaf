@@ -1,46 +1,46 @@
-import React, { FC, useEffect, useRef, useState } from "react";
+import React, {
+	forwardRef,
+	useEffect,
+	useRef,
+	useState,
+	useImperativeHandle
+} from "react";
 import { Link } from "react-router-dom";
 
-const Header: FC = () => {
-	const containterRef = useRef<HTMLDivElement>(null);
+const Header = forwardRef<HTMLDivElement>((_, ref) => {
+	const containerRef = useRef<HTMLDivElement>(null);
 	const [scrolled, setScrolled] = useState<boolean>(false);
 	const [sub, setSub] = useState<boolean>(false);
 	const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
-	
+
+	// Expose internal ref to parent via forwardRef
+	useImperativeHandle(ref, () => containerRef.current as HTMLDivElement, []);
+
 	const handleScroll = () => {
-		if (window.scrollY > 50) {
-			setScrolled(true);
-		} else {
-			setScrolled(false);
-		}
+		setScrolled(window.scrollY > 50);
 	};
 
 	const toggleMobileMenu = () => {
-		setMobileMenuOpen(!mobileMenuOpen);
-		// Блокируем скролл при открытом меню
-		if (!mobileMenuOpen) {
-			document.body.classList.add('menu-open');
-		} else {
-			document.body.classList.remove('menu-open');
-		}
+		setMobileMenuOpen((prev) => {
+			const newState = !prev;
+			document.body.classList.toggle("menu-open", newState);
+			return newState;
+		});
 	};
 
 	useEffect(() => {
 		window.addEventListener("scroll", handleScroll);
-
 		return () => {
 			window.removeEventListener("scroll", handleScroll);
-			document.body.classList.remove('menu-open');
+			document.body.classList.remove("menu-open");
 		};
 	}, []);
 
-	
-	
 	return (
 		<header className="header">
 			<div
 				className={`container ${scrolled ? "scrolled" : null}`}
-				ref={containterRef}
+				ref={containerRef}
 			>
 				<nav className="main-nav" aria-label="Основная навигация">
 					<ul className="nav-primary container_2">
@@ -182,6 +182,6 @@ const Header: FC = () => {
 			</div>
 		</header>
 	);
-};
+});
 
 export default Header;

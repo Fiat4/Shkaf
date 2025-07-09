@@ -5,28 +5,92 @@ import './CategoryPage.css'
 import Filter from "../Components/Filter/Filter"
 import ProductCard from "../Components/ProductCard/ProductCard"
 import { Link } from "react-router-dom"
+import { useEffect, useRef, useState } from "react"
+import HeadMeta from "../Components/HeadMeta/HeadMeta"
 
 interface ICategoryPageProps {
     product: string
 }
 
 const CategoryPage: React.FC<ICategoryPageProps> = ({product}) => {
+    const headerRef = useRef<HTMLDivElement | null>(null);
+    const [headerHeight, setHeaderHeight] = useState(0);
+
+    const [categoryItems] = useState([
+        { id: 1, image: "/img/bed.jpg", alt: "Кровати", name: "nigga", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", price: "10000", href: "#", new: true},
+        { id: 2, image: "/img/shkaf.jpg", alt: "Шкафы", name: "nigga", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", price: "10000", href: "#", new: false},
+        { id: 3, image: "/img/kit.jpg", alt: "Кухни", name: "nigga", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", price: "10000", href: "#", new: false},
+        { id: 4, image: "/img/wal.jpg", alt: "Стенки", name: "nigga", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", price: "10000", href: "#", new: false},
+        { id: 5, image: "/img/wal.jpg", alt: "Стенки", name: "nigga", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", price: "10000", href: "#", new: false},
+        { id: 6, image: "/img/wal.jpg", alt: "Стенки", name: "nigga", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", price: "10000", href: "#", new: false},
+        { id: 7, image: "/img/wal.jpg", alt: "Стенки", name: "nigga", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", price: "10000", href: "#", new: false},
+    ]);
+
+    useEffect(() => {
+        if (headerRef.current) {
+            setHeaderHeight(headerRef.current.offsetHeight);
+        }
+    }, []);
     return (
     <>
-        <Header/>
-<div className="category-container__cat">
+        <HeadMeta/>
+        <Header ref={headerRef} />
+        <div className="category-container__cat">
         <div className="filters-column">
-            <div className="href-header">
+            <div className="href-header desktop-only">
                 <div className="breadcrumb">
                     <Link to="/">Главная</Link>
                     <span>/</span>
                     <span style={{color: "black"}}>{product}</span>
                 </div>
             </div>
-            <h1 className="breadcrumb_title">{product.toUpperCase()}</h1>
+            <img className="top-img" src="../img/kitchen_main.jpg" alt="Кухни"/>
+            <div className="category-title-holder">
+                
+                <h1 className="breadcrumb_title">{product.toUpperCase()}</h1>
+                <button className="open-filters-button" onClick={() => document.body.classList.add('filters-open')}>
+                    <i className="fa-solid fa-sliders fa-rotate-270"></i>
+                </button>
+            </div>
             
-            <Filter/>
+            
+
+            <div className="filter-overlay">
+                <div className="filter-overlay-inner" style={{ paddingTop: `${headerHeight + 15}px` }}>
+                    <div className="category-title-holder">
+                        <h1 className="breadcrumb_title">{product.toUpperCase()}</h1>
+                        <button className="open-filters-button" onClick={() => document.body.classList.remove('filters-open')}>
+                            <i className="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+                    <Filter/>
+                </div>
+            </div>
+            {/* <Filter/> */}
         </div>
+
+        <div className="mobile-new-container">
+				{categoryItems.map((item, index) => (
+					<div className="mobile-new-item">
+						<div className="mobile-new-img-wrapper">
+							<img className="mobile-new-img" src={item.image} alt={item.alt} />
+						</div>
+						<div className="mobile-new-name-container">
+							<h4 className="mobile-new-primary">{item.name}</h4>
+							{item.new && (
+								<h5 className="mobile-new-secondary mobile-new-tag">НОВИНКА</h5>
+							)}
+						</div>
+						<h5 className="mobile-new-secondary">{item.description}</h5>
+						<div className="mobile-new-price-container">
+							<h4 className="mobile-new-price">{item.price} руб</h4>
+							<button className="mobile-new-fav-button">
+								<i className="fa-regular fa-heart"></i>
+							</button>
+						</div>
+					</div>
+				))}
+			</div>
 
         <div className="products-column__cat">
 
