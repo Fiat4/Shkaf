@@ -51,47 +51,39 @@ const ProductPage: React.FC = () => {
         return () => window.removeEventListener('keydown', handleKeyPress);
     }, []);
 
-const reviews = [
-  {
-    name: "Анна Петрова",
-    rating: 5,
-    text: "Очень довольна качеством кухни! Все сделано на высшем уровне.",
-    image: './img/kit.jpg'
-  },
-  {
-    name: "Игорь Смирнов",
-    rating: 4,
-    text: "Шкаф немного задержали, но сборка прошла отлично.",
-    image: './img/shkaf.jpg'
-  },
-  {
-    name: "Мария Иванова",
-    rating: 5,
-    text: "Диван просто супер — мягкий и стильный. Рекомендую!",
-    image: './img/sofa.jpg'
-  }
-];
-const [activeReview, setActiveReview] = useState(0);
-const [isAnimating, setIsAnimating] = useState(false);
+    const reviews = [
+    {
+        name: "Анна Петрова",
+        rating: 5,
+        text: "Очень довольна качеством кухни! Все сделано на высшем уровне.",
+        image: './img/kit.jpg'
+    },
+    {
+        name: "Игорь Смирнов",
+        rating: 4,
+        text: "Шкаф немного задержали, но сборка прошла отлично.",
+        image: './img/shkaf.jpg'
+    },
+    {
+        name: "Мария Иванова",
+        rating: 5,
+        text: "Диван просто супер — мягкий и стильный. Рекомендую!",
+        image: './img/sofa.jpg'
+    }
+    ];
 
-const changeReview = (direction: 'next' | 'prev') => {
-  setIsAnimating(true);
-  setTimeout(() => {
-    setActiveReview((prev) => {
-      if (direction === 'next') return (prev + 1) % reviews.length;
-      return (prev - 1 + reviews.length) % reviews.length;
-    });
-    setIsAnimating(false);
-  }, 200); // should match animation duration
-};
+    const [activeReview, setActiveReview] = useState(0);
+    const [isAnimating, setIsAnimating] = useState(false);
 
-
-    const nextReview = () => {
-    setActiveReview((prev) => (prev + 1) % reviews.length);
-    };
-
-    const prevReview = () => {
-    setActiveReview((prev) => (prev - 1 + reviews.length) % reviews.length);
+    const changeReview = (direction: 'next' | 'prev') => {
+        setIsAnimating(true);
+        setTimeout(() => {
+            setActiveReview((prev) => {
+            if (direction === 'next') return (prev + 1) % reviews.length;
+            return (prev - 1 + reviews.length) % reviews.length;
+            });
+            setIsAnimating(false);
+        }, 200);
     };
 
     const menuItems = [
@@ -237,9 +229,9 @@ const changeReview = (direction: 'next' | 'prev') => {
 
     <div className='mobile-dropdown'>
         {menuItems.map((item, index) => (
-            <div className="collapsible-card" key={item.key}>
+            <div className="product-collapsible-card" key={item.key}>
             <div
-                className="collapsible-header"
+                className="product-collapsible-header"
                 onClick={() => setToggles((prev) => {
                 const newState = [...prev];
                 newState[index] = !newState[index];
@@ -247,10 +239,10 @@ const changeReview = (direction: 'next' | 'prev') => {
                 })}
             >
                 <h4 className="mobile-new-secondary">{item.label}</h4>
-                <i className={`fa-solid fa-chevron-up arrow-icon-top ${toggles[index] ? "expanded" : ""}`} />
+                <i className={`fa-solid fa-chevron-up product-arrow-icon-top ${toggles[index] ? "expanded" : ""}`} />
             </div>
             <div
-                className={`collapsible-content ${toggles[index] ? 'expanded' : ''}`}
+                className={`product-collapsible-content ${toggles[index] ? 'expanded' : ''}`}
                 // style={{
                 // height: toggles[index] ? "10rem" : "0px",
                 // paddingBottom: toggles[index] ? "5%" : "0px",

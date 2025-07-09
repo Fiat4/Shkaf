@@ -962,7 +962,7 @@
         margin-left: 5%;
     }
 
-    .arrow-icon-top {
+    .product-arrow-icon-top {
         top: 20px
     }
 
@@ -970,30 +970,57 @@
         margin: 0;
     }
 
-    .collapsible-content {
-        padding: 0;
+    .product-arrow-icon-bottom {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        transition: transform 0.3s ease;
+    }
+
+    .product-arrow-icon-bottom.expanded {
+        transform: translateY(-50%) rotate(180deg);
+    }
+
+    .product-arrow-icon-top {
+        position: absolute;
+        right: 0;
+        top: 16px;
+        right: 5%;
+        transform: translateY(-50%);
+        transition: transform 0.3s ease;
+    }
+
+    .product-arrow-icon-top.expanded {
+        transform: translateY(-50%) rotate(180deg);
+    }
+
+    .product-collapsible-content {
+        padding: 0 5%;
         max-height: 0;
         overflow: hidden;
         transition: all 0.6s ease-in-out;
+
     }
 
-    .collapsible-header {
-        padding: 5px 0 5%;
+    .product-collapsible-header {
+        position: relative;
+        padding: 5px 5% 5%;
         border-bottom: #a2a1a1 solid 1px;
     }
     
-    .collapsible-header h4 {
+    .product-collapsible-header h4 {
         color: #a2a1a1;
     }
 
-    .collapsible-card {
+    .product-collapsible-card {
         margin: 5% 0;
         border: none;
     }
 
-    .collapsible-content.expanded {
+    .product-collapsible-content.expanded {
         max-height: 500px;
-        padding: 10px 0 10px;
+        padding: 10px 5% 10px;
         border-bottom: #a2a1a1 solid 1px;
     }
 
