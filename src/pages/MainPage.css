@@ -260,7 +260,6 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: clamp(0.5rem, 1vw, var(--spacing-large));
     position: relative;
     z-index: 1;
     list-style: none;
@@ -994,13 +993,20 @@ main {
     .menu-button-holder {
         display: flex;
         justify-content: space-between;
+        height: 80px;
+        width: 100%;
+        border-bottom: 1px solid #eee;
     }
 
     .menu-button-holder button {
-        color: white;
-        font-size: 1.2rem;
-        margin-right: 5%;
+        color: black;
+        font-size: 2rem;
+        margin-right: 10px;
+        margin-top: 10%;
+        height: 20px;
+        margin-left: auto;
     }
+
     .mobile-new-primary {
         font-weight: 300;
     }
@@ -1111,6 +1117,7 @@ main {
     .why-us-img-container {
         padding: 0 30px;
     }
+
     .why-us-img {
         width: 100%;
         border-radius: 8px;
@@ -1123,12 +1130,6 @@ main {
         padding: 0px 15px;
         overflow: hidden;
     }
-
-    /* .collapsible-text {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    } */
     
     .collapsible-header {
         display: flex;
@@ -3189,14 +3190,12 @@ main {
         left: 0;
         width: 100%;
         height: 100vh;
-        background-color: rgba(0, 0, 0, 0.95);
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
-        padding-top: 80px;
         transform: translateX(-100%);
         transition: transform 0.3s ease;
         z-index: 1000;
@@ -3217,12 +3216,14 @@ main {
     }
 
     #con_2 li {
-        margin: 15px 0;
         text-align: center;
+        border-bottom: 1px solid #eee;
     }
 
+
+
     #con_2 .nav-link {
-        color: #fff;
+        color: #000;
         font-size: 1.2rem;
         font-weight: 500;     
         padding: 10px 20px;
@@ -3280,6 +3281,15 @@ main {
     .search-container {
         position: relative;
         width: 100%;
+    }
+
+    .mobile-search-icon {
+        font-size: .8rem;
+        position: absolute;
+        top: 23%;
+        right: 1.1rem;
+        transform: translateY(-50%);
+        pointer-events: none;
     }
 }
 
@@ -3357,7 +3367,7 @@ main {
 
     #search_mobile {
         width: 95%;
-        height: 45px;
+        height: 2rem;
         border: 1px solid #000;
         border-radius: 20px;
         padding: 0 15px;
@@ -3391,6 +3401,22 @@ main {
         backdrop-filter: blur(5px);
         -webkit-backdrop-filter: blur(5px);
         white-space: nowrap;
+    }
+
+    .mobile-nav-tabs.tabless {
+        display: none;
+    }
+
+    .mobile-search-icon.tabless {
+        top: 60%;
+    }
+
+    .header.searchless {
+        border: none;
+    }
+
+    .search-container.searchless {
+        display: none;
     }
 
     /* Скрываем все элементы навигации кроме логотипа, телефона и иконок */

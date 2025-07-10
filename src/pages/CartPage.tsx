@@ -12,7 +12,7 @@ const CartPage: React.FC = () => {
 				description="Магазин мебели - качественная мебель для вашего дома"
 				keywords="мебель, шкафы, кровати, кухни, стенки, интерьер"
 		/>
-        <Header/>
+        <Header variant='searchless'/>
 
     <main className="cart-page">
         <div className="breadcrumbs">

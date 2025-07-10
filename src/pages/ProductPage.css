@@ -423,7 +423,7 @@
 }
 
 @media (min-width: 768px) {
-    .review-text {
+    .product-review-text {
         font-size: 1.5em;
         font-family: 'ALS Schlange sans';
         color: rgba(0, 0, 0, 0.8);
@@ -431,7 +431,7 @@
     }
 }
 
-.review-text img {
+.product-review-text img {
     width: 13vh;
     height: 13vh;
     object-fit: cover;
@@ -889,7 +889,7 @@
         margin: 0 2px;
         }
 
-    .review-text {
+    .product-review-text {
         margin-top: 0.5rem;
         font-size: 1rem;
     }
@@ -1164,9 +1164,12 @@
         margin: 3% 15%;
     }
 
-    .review-text {
+    .product-review-text {
         margin: 0 15%;
         text-align: left;
+        font-size: clamp(1rem, 1.5vw, 1.5rem);
+        line-height: 1.6;
+        font-family: ALS Schlange sans;
     }
 
     .review-img-wrapper img {

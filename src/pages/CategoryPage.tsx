@@ -34,7 +34,7 @@ const CategoryPage: React.FC<ICategoryPageProps> = ({product}) => {
     return (
     <>
         <HeadMeta/>
-        <Header ref={headerRef} />
+        <Header ref={headerRef} variant="tabless"/>
         <div className="category-container__cat">
         <div className="filters-column">
             <div className="href-header desktop-only">

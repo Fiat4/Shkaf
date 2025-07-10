@@ -7,7 +7,11 @@ import React, {
 } from "react";
 import { Link } from "react-router-dom";
 
-const Header = forwardRef<HTMLDivElement>((_, ref) => {
+type HeaderProps = {
+	variant?: 'default' | 'tabless' | 'searchless'
+};
+
+const Header = forwardRef<HTMLDivElement, HeaderProps>(({ variant = 'default' }, ref) => {
 	const containerRef = useRef<HTMLDivElement>(null);
 	const [scrolled, setScrolled] = useState<boolean>(false);
 	const [sub, setSub] = useState<boolean>(false);
@@ -37,7 +41,7 @@ const Header = forwardRef<HTMLDivElement>((_, ref) => {
 	}, []);
 
 	return (
-		<header className="header">
+		<header className={`header ${variant}`}>
 			<div
 				className={`container ${scrolled ? "scrolled" : null}`}
 				ref={containerRef}
@@ -51,14 +55,14 @@ const Header = forwardRef<HTMLDivElement>((_, ref) => {
 								<i className="fa-regular fa-heart"></i>
 								</Link>
 								<button 
-								className={`header_menu ${mobileMenuOpen ? 'active' : ''}`}
-								onClick={toggleMobileMenu}
-								aria-label="Открыть меню"
-							>
-								<span></span>
-								<span></span>
-								<span></span>
-							</button>
+									className={`header_menu ${mobileMenuOpen ? 'active' : ''}`}
+									onClick={toggleMobileMenu}
+									aria-label="Открыть меню"
+								>
+									<span></span>
+									<span></span>
+									<span></span>
+								</button>
 							</div>
 							
 							
@@ -66,9 +70,10 @@ const Header = forwardRef<HTMLDivElement>((_, ref) => {
 						<div className="mobile-phone">
 							<span>+7 (999) 999-99-99</span>
 						</div>
-						<div className="search-container">
-							<input type="text" id="search_mobile" placeholder="Поиск" />
-							<nav className="mobile-nav-tabs">
+						<div className={`search-container ${variant}`}>
+							<input type="text" id="search_mobile"/>
+							<i className={`fa-solid fa-magnifying-glass mobile-search-icon ${variant}`}></i>
+							<nav className={`mobile-nav-tabs ${variant}`}>
 								{/* <a href="#catalog">КАТАЛОГ</a> */}
 								<a href="#about">О НАС</a>
 								<a href="#sales">АКЦИИ</a>
@@ -133,11 +138,7 @@ const Header = forwardRef<HTMLDivElement>((_, ref) => {
 						className={`nav-secondary container_2 ${sub ? "active" : ""} ${mobileMenuOpen ? "mobile-active" : ""}`}
 						aria-label="Подкатегории"
 					>
-						
-						<li className="menu-button-holder">
-							<Link to="/category/closets" className="nav-link" onClick={() => setMobileMenuOpen(false)}>
-								Шкафы
-							</Link>
+						<div className="menu-button-holder">
 							<button 
 								className={`header_menu ${mobileMenuOpen ? 'active' : ''}`}
 								onClick={toggleMobileMenu}
@@ -145,6 +146,11 @@ const Header = forwardRef<HTMLDivElement>((_, ref) => {
 							>
 								<i className="fa-solid fa-xmark"></i>
 							</button>
+						</div>
+						<li>
+							<Link to="/category/closets" className="nav-link" onClick={() => setMobileMenuOpen(false)}>
+								Шкафы
+							</Link>
 						</li>
 						<li>
 							<Link to="/category/kitchens" className="nav-link" onClick={() => setMobileMenuOpen(false)}>
@@ -170,12 +176,6 @@ const Header = forwardRef<HTMLDivElement>((_, ref) => {
 							<Link to="/category/kidRooms" className="nav-link" onClick={() => setMobileMenuOpen(false)}>
 								Детские
 							</Link>
-						</li>
-						<li>
-							<input type="text" placeholder="Поиск" className="search-input" />
-						</li>
-						<li>
-							<i className="search-icon"></i>
 						</li>
 					</ul>
 				</nav>

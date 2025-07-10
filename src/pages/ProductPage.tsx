@@ -139,7 +139,7 @@ const ProductPage: React.FC = () => {
     return (
         <>
         <HeadMeta/>
-        <Header/>
+        <Header variant='searchless'/>
             
     <div className="breadcrumb">
         <Link to="../../index.html">Главная</Link>
@@ -390,7 +390,7 @@ const ProductPage: React.FC = () => {
                         ))}
                     </div>
                 </div>
-                <p className="review-text">{reviews[activeReview].text}</p>
+                <p className="product-review-text">{reviews[activeReview].text}</p>
                 <div className='review-img-wrapper'>
                     <img
                     src={reviews[activeReview].image}
