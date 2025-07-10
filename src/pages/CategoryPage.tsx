@@ -31,6 +31,16 @@ const CategoryPage: React.FC<ICategoryPageProps> = ({product}) => {
             setHeaderHeight(headerRef.current.offsetHeight);
         }
     }, []);
+
+    const handleClick = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        // wait ~500ms for scroll to finish (adjust as needed)
+        setTimeout(() => {
+            document.body.classList.add('filters-open')
+        }, 500);
+    };
+
     return (
     <>
         <HeadMeta/>
@@ -48,7 +58,8 @@ const CategoryPage: React.FC<ICategoryPageProps> = ({product}) => {
             <div className="category-title-holder">
                 
                 <h1 className="breadcrumb_title">{product.toUpperCase()}</h1>
-                <button className="open-filters-button" onClick={() => document.body.classList.add('filters-open')}>
+                
+                <button className="open-filters-button" onClick={handleClick}>
                     <i className="fa-solid fa-sliders fa-rotate-270"></i>
                 </button>
             </div>

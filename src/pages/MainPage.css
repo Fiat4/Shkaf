@@ -3408,7 +3408,7 @@ main {
     }
 
     .mobile-search-icon.tabless {
-        top: 60%;
+        top: 42.5%;
     }
 
     .header.searchless {
@@ -3417,6 +3417,10 @@ main {
 
     .search-container.searchless {
         display: none;
+    }
+
+    .search-container.tabless {
+        padding-bottom: 5%;
     }
 
     /* Скрываем все элементы навигации кроме логотипа, телефона и иконок */
