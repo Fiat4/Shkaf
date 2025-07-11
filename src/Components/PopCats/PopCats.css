@@ -79,6 +79,14 @@
     .category-container {
         display: none;
     }
+
+    .popular-section {
+        padding: 2.5rem 0;
+    }
+
+    .katalog_container {
+        margin-bottom: .5rem;
+    }
     /* .popular-section .category-container {
         all: initial;
         display: grid !important;

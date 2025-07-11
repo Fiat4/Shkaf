@@ -32,6 +32,9 @@
 	font-display: swap;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+
 
 /* ==========================================================================
    Базовые стили
@@ -963,12 +966,13 @@ main {
 
     .consultation-form {
         width: 85%;
-        padding: 2vh 3vw;
-        margin-top: 5%;
+        padding: 2.5rem 2rem;
+        margin-top: 12%;
     }
 
     .consultation-form h2 {
-        font-size: clamp(1rem,1.5vw,1.8rem);
+        font-size: 1.3rem;
+        font-weight: 400;
     }
 
     .form-title h2 {
@@ -976,7 +980,8 @@ main {
     }
     
     .form-subtitle h3 {
-        font-size: clamp(1rem,1.5vw,1.8rem);
+        font-size: 1.3rem;
+        font-weight: 400;
         
     }
     .mobile-new-container {
@@ -986,7 +991,7 @@ main {
         display: flex;
         flex-wrap: wrap;
         gap: 5%;
-        padding: 5%;
+        padding: 5% 7%;
         justify-content: space-between;
     }
 
@@ -1013,13 +1018,15 @@ main {
 
     .mobile-new-secondary {
         font-weight: 300;
+        font-size: .7rem;
     }
 
     .mobile-new-tag {
         color: var(--secondary-color);
-        border: var(--secondary-color) solid 2px;
+        border: var(--secondary-color) solid 1px;
         padding: 2px;
-        font-size: 8px;
+        font-size: 8px !important;
+        height: 1.1rem !important;
     }
 
     .mobile-new-price {
@@ -1027,7 +1034,7 @@ main {
     }
 
     .mobile-new-item {
-        max-width: 45%;
+        max-width: 47%;
         padding-bottom: 5%;
     }
 
@@ -1058,6 +1065,7 @@ main {
     }
 
     .mobile-new-name-container {
+        margin: 2px 0;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -1065,6 +1073,8 @@ main {
     }
 
     .mobile-new-price-container {
+        font-size: .8rem;
+        margin-top: 8px;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -1098,6 +1108,18 @@ main {
         height: 1rem;
     }
 
+    .about-svg-arrow {
+        width: 100%;
+        max-width: 800px;
+        margin: auto;
+    }
+
+    .about-svg-arrow svg {
+        width: 100%;
+        display: block;
+        height: 2.5rem;
+    }
+
     .svg-arrow-container {
         width: 100%;
         max-width: 800px;
@@ -1112,6 +1134,7 @@ main {
 
     .why-us-caption {
         margin-left: 7%;
+        margin-right: 3%;
     }
 
     .why-us-img-container {
@@ -1120,12 +1143,12 @@ main {
 
     .why-us-img {
         width: 100%;
-        border-radius: 8px;
+        border-radius: 12px;
     }
 
     .collapsible-card {
         margin: 30px;
-        border-radius: 8px;
+        border-radius: 12px;
         border: var(--secondary-color) solid 2px;
         padding: 0px 15px;
         overflow: hidden;
@@ -1136,7 +1159,12 @@ main {
         position: relative; /* Needed for absolute arrow */
         width: 100%;
         cursor: pointer;
-        padding: 5px 0 5px;
+        padding: .7rem 0;
+    }
+
+    .collapsible-header h4 {
+        font-family: "Next-art";
+        font-size: .9rem;
     }
 
     .grid-centered {
@@ -1157,10 +1185,24 @@ main {
         gap: 8px;
     }
 
+    .why-us-top p {
+        font-size: 1.6rem;
+        font-weight: 350;
+    }
+
+    .why-us-bottom p {
+        font-size: 1.6rem;
+        font-weight: 350;
+    }
+
     .collapsible-content {
         transition: height 0.4s ease, padding-bottom 0.4s ease;
-        padding: 0px 20px;
+        padding: 0px 10px;
         overflow: hidden;
+    }
+
+    .collapsible-content h4 {
+        font-size: .8rem;
     }
 
     .arrow-icon-bottom {
@@ -1219,7 +1261,7 @@ main {
     display: flex;
     justify-content: center;
     position: relative;
-    margin-bottom: 70px;
+    margin-bottom: 3rem;
 }
 
 .main-content-wrapper {
@@ -1831,7 +1873,9 @@ main {
 @media (max-width: 768px) {
 
     .mainpage-title {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
+        font-weight: 350;
+        font-family: 'Bounded';
     }
 
     .katalog_container {
@@ -1854,7 +1898,7 @@ main {
     }
 
     .conten {
-        padding: 0 5%;
+        padding: 0 9%;
     }
 
     .image_about {
@@ -1864,7 +1908,11 @@ main {
     .mobile-img-about {
         display: block;
         width: 100%;
-        margin-top: 10%;
+        margin-top: 7%;
+    }
+
+    .about_us {
+        margin-bottom: 4rem;
     }
 
     .image_about_cont {
@@ -2014,7 +2062,7 @@ main {
     .banner-title {
         /* font-size: clamp(2.2rem, 2.5vw, 2.5rem); */
         text-align: center;
-        margin-bottom: 4%;
+        margin-bottom: 9%;
     }
 
     .personal-data-text {
@@ -2033,7 +2081,9 @@ main {
 }
 
 .product-title {
-        font-size: clamp(0.9rem, 1.1vw, 1.2rem);
+    font-size: 1rem;
+    font-family: "Bounded";
+    font-weight: 300;
 }
 
 .product-description {
@@ -2055,18 +2105,23 @@ main {
     }
 
     .form-input {
+        font-family: "Next-art";
         padding: 0.6rem 1rem;
-        font-size: 0.9rem;
-        
+        font-size: .5rem;
+        height: 2rem;
     }
 
     .form-button {
+        font-family: "Next-art";
         padding: 0.8rem 1.2rem;
-        font-size: 0.9rem;
+        font-size: 0.7rem;
+        margin-top: 3%;
     }
 
     .banner-title {
-        font-size: clamp(1.2rem, 2vw, 2rem);
+        font-size: 1.7rem;
+        font-weight: 300;
+        margin-top: 9%;
     }
 
     .personal-data-text {
@@ -2084,19 +2139,23 @@ main {
 
     .products-grid {
         gap: 0.8rem;
-        padding: 0.8rem 1vw;
+        padding: 1.5rem 1vw;
     }
     
     .product-title {
-        font-size: 0.9rem;
+        font-size: 1rem;
     }
     
     .product-description {
-        font-size: 0.8rem;
+        font-weight: 300;
+        font-size: .7rem;
+        font-family: "Bounded";
     }
     
     .product-price {
-        font-size: 0.9rem;
+        font-weight: 300;
+        font-size: .8rem;
+        font-family: "Bounded";
     }
 }
 
@@ -2847,7 +2906,7 @@ main {
     }
     
     .mobile-phone span {
-    font-family: 'Next-art';
+        font-family: 'Next-art';
         font-size: 1.7rem;
         color: #000;
         white-space: nowrap;
@@ -3286,7 +3345,7 @@ main {
     .mobile-search-icon {
         font-size: .8rem;
         position: absolute;
-        top: 23%;
+        top: 27%;
         right: 1.1rem;
         transform: translateY(-50%);
         pointer-events: none;
@@ -3302,6 +3361,11 @@ main {
     }
 }
 @media (max-width: 768px) {
+
+    .product-card {
+        gap: 0;
+    }
+
     .nav-primary.container_2 {
         display: flex;
         align-items: center;
@@ -3313,8 +3377,8 @@ main {
     }
 
     .nav-link[href="/"]{
-        width: 105px;
-        height: 45px;
+        width: 58px;
+        height: 31px;
         margin: 0;
         position: static;
         transform: none;
@@ -3330,10 +3394,12 @@ main {
     }
 
     .mobile-phone span {
-        font-family: 'Next-art';
-        font-size: 1.2rem;
+        font-family: 'Inter';
+        font-weight: 250;
+        font-size: .9rem;
         color: #000;
         white-space: nowrap;
+        text-decoration: underline;
     }
 
     .icons-wrapper {
@@ -3382,7 +3448,6 @@ main {
         justify-content: space-between;
         width: 90%;
         margin: 10px auto;
-        padding: 10px 0;
         border-top: 1px solid rgba(238, 238, 238, 0.3);
         flex-wrap: wrap;
         gap: 5px;
@@ -3408,7 +3473,7 @@ main {
     }
 
     .mobile-search-icon.tabless {
-        top: 42.5%;
+        top: 40%;
     }
 
     .header.searchless {
@@ -3445,13 +3510,17 @@ main {
 @media (max-width: 768px) {
 
     .button_footer {
-        width: 100%;
+        width: 95%;
         display: flex;
         justify-content: space-between;
     }
 
     .footer-text {
-        font-size: .8rem;
+        font-size: .9rem;
+    }
+
+    .footer-content_1 p {
+        margin: 0;
     }
 
     .footer-logo {
@@ -3463,7 +3532,11 @@ main {
     }
 
     .mobile-footer-left p {
-        font-size: .8rem;
+        font-size: .9rem;
+    }
+
+    .mobile-footer-left {
+        padding-left: 5%;
     }
 
     .footer hr {
@@ -3473,7 +3546,7 @@ main {
     }
 
     .footer-section-social p {
-        font-size: 1.2rem;
+        font-size: .9rem;
     }
     .footer-section-networks a i{
         font-size: 1rem;
@@ -3485,7 +3558,8 @@ main {
     }
 
     .button_footer {
-        padding: 10px;
+        padding: 13px 10px;
+        margin-bottom: 15%;
     }
 
     .button_footer span {
@@ -3516,7 +3590,9 @@ main {
     }
 
     .reviews-section h2 {
-        font-size: 1.5rem;
+        font-weight: 350;
+        font-size: 1.3rem !important;
+        letter-spacing: 0.014rem;
     }
 
     .review-card:hover {
@@ -3544,7 +3620,7 @@ main {
     }
 
     .products-section {
-        margin: 20% 0 0;
+        margin: 10% 0 0;
     }
 
     .products-header {
@@ -3560,16 +3636,17 @@ main {
     }
 
     .products-grid {
-        margin: 0 7% 0;
+        margin: 0 3% 0;
     }
     
     .mobile-buttons-container {
         display: flex;
-        gap: 20px;
+        gap: 45px;
     }
 
     .mobile-new-fav-button {
         display: block;
+        font-size: 1.2rem;
     }
 
     .product-card {

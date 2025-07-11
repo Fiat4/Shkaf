@@ -49,7 +49,7 @@ const Popular = ({ dynamicText = "ПОПУЛЯРНОЕ" }) => {
 							onClick={() => productsGridRef.current?.scrollBy({ left: -220 * 3, behavior: "smooth" })}
 							aria-label="Previous items"
 							>
-							<i className="fa-solid fa-chevron-left" />
+							<i className="fa-solid fa-arrow-left" />
 						</button>
 
 						<button
@@ -58,7 +58,7 @@ const Popular = ({ dynamicText = "ПОПУЛЯРНОЕ" }) => {
 							onClick={() => productsGridRef.current?.scrollBy({ left: 220 * 3, behavior: "smooth" })}
 							aria-label="Next items"
 							>
-							<i className="fa-solid fa-chevron-right" />
+							<i className="fa-solid fa-arrow-right" />
 						</button>
 					</div>
 				</div>) : (

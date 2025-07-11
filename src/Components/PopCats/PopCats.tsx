@@ -8,13 +8,13 @@ interface PopCatsProps {
 const PopCats: React.FC<PopCatsProps> = ({ scrollClass }) => {
 	const [activeIndex, setActiveIndex] = useState(1);
 	const [categoryItems] = useState([
-		{ id: 1, image: "./img/bed.jpg", alt: "Кровати", name: "nigga", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", price: "10000", href: "#", new: true},
-		{ id: 2, image: "./img/shkaf.jpg", alt: "Шкафы", name: "nigga", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", price: "10000", href: "#", new: false},
-		{ id: 3, image: "./img/kit.jpg", alt: "Кухни", name: "nigga", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", price: "10000", href: "#", new: false},
-		{ id: 4, image: "./img/wal.jpg", alt: "Стенки", name: "nigga", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", price: "10000", href: "#", new: false},
-		{ id: 5, image: "./img/wal.jpg", alt: "Стенки", name: "nigga", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", price: "10000", href: "#", new: false},
-		{ id: 6, image: "./img/wal.jpg", alt: "Стенки", name: "nigga", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", price: "10000", href: "#", new: false},
-		{ id: 7, image: "./img/wal.jpg", alt: "Стенки", name: "nigga", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", price: "10000", href: "#", new: false},
+		{ id: 1, image: "./img/bed.jpg", alt: "Кровати", name: "NIGGA", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", price: "10000", href: "#", new: true},
+		{ id: 2, image: "./img/shkaf.jpg", alt: "Шкафы", name: "NIGGA", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", price: "10000", href: "#", new: false},
+		{ id: 3, image: "./img/kit.jpg", alt: "Кухни", name: "NIGGA", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", price: "10000", href: "#", new: false},
+		{ id: 4, image: "./img/wal.jpg", alt: "Стенки", name: "NIGGA", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", price: "10000", href: "#", new: false},
+		{ id: 5, image: "./img/wal.jpg", alt: "Стенки", name: "NIGGA", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", price: "10000", href: "#", new: false},
+		{ id: 6, image: "./img/wal.jpg", alt: "Стенки", name: "NIGGA", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", price: "10000", href: "#", new: false},
+		{ id: 7, image: "./img/wal.jpg", alt: "Стенки", name: "NIGGA", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", price: "10000", href: "#", new: false},
 	]);
 
 	useEffect(() => {

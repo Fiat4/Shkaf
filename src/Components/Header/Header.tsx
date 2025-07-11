@@ -68,7 +68,7 @@ const Header = forwardRef<HTMLDivElement, HeaderProps>(({ variant = 'default' },
 							
 						</li>
 						<div className="mobile-phone">
-							<span>+7 (999) 999-99-99</span>
+							<span>+7 (977) 777-77-77</span>
 						</div>
 						<div className={`search-container ${variant}`}>
 							<input type="text" id="search_mobile"/>

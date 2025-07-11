@@ -42,11 +42,11 @@ const AboutUs: React.FC = () => {
             <div className="why-us-bottom">
                 <p className="mainpage-title">ИМЕННО </p>
                 <p className="mainpage-title green">НАС</p>
-                <div className="svg-arrow">
+                <div className="about-svg-arrow">
                     <svg viewBox="0 0 100 20" preserveAspectRatio="none">
-                        <line x1="0" y1="10" x2="95.4" y2="10" stroke="#BADD7F" stroke-width="1"/>
-                        <line x1="95" y1="10" x2="90" y2="5" stroke="#BADD7F" stroke-width="1"/>
-                        <line x1="95" y1="10" x2="90" y2="15" stroke="#BADD7F" stroke-width="1"/>
+                        <line x1="0" y1="10" x2="95.4" y2="10" stroke="#BADD7F" stroke-width="2"/>
+                        <line x1="95" y1="10" x2="90" y2="5" stroke="#BADD7F" stroke-width="2"/>
+                        <line x1="95" y1="10" x2="90" y2="15" stroke="#BADD7F" stroke-width="2"/>
                     </svg>
                 </div>
             </div>
@@ -67,7 +67,7 @@ const AboutUs: React.FC = () => {
                 <div
                 className="collapsible-content"
                 style={{
-                    height: toggletop ? "10rem" : "0px",
+                    height: toggletop ? "6rem" : "0px",
                     paddingBottom: toggletop ? "5%" : "0px",
                 }}>
                     <h4 className="mobile-new-secondary">Мы гарантируем высокое качество и экологичность нашей мебели. Используем только лучшие материалы, чтобы вы могли наслаждаться комфортом и безопасностью в вашем доме.</h4>
@@ -91,7 +91,7 @@ const AboutUs: React.FC = () => {
                 <div
                 className="collapsible-content"
                 style={{
-                    height: togglebottom? "10rem" : "0px",
+                    height: togglebottom? "6rem" : "0px",
                     paddingBottom: togglebottom ? "5%" : "0px",
                 }}>
                     <h4 className="mobile-new-secondary">Мы гарантируем высокое качество и экологичность нашей мебели. Используем только лучшие материалы, чтобы вы могли наслаждаться комфортом и безопасностью в вашем доме.</h4>

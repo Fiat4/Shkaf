@@ -132,9 +132,9 @@
 }
 
 /* Стили для активных звезд в отзывах */
-.stars i.fa-solid {
+/* .stars i.fa-solid {
     color: #FFD700;
-}
+} */
 
 .stars i.fa-regular {
     color: #ddd;
