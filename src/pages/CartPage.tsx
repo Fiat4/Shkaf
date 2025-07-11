@@ -92,7 +92,10 @@ const CartPage: React.FC = () => {
                     <span className="total-price">93 000 руб</span>
                 </div>
 
-                <button className="checkout-btn">ПЕРЕЙТИ К ОФОРМЛЕНИЮ</button>
+                <div className='checkout-wrapper'>
+                    <button className="checkout-btn">ПЕРЕЙТИ К ОФОРМЛЕНИЮ</button>
+                </div>
+
 
                 <div className="delivery-info">
                     <h3>ДОСТАВКА В <span className="city">МОСКВА</span></h3>
@@ -112,7 +115,6 @@ const CartPage: React.FC = () => {
         </div>
     </main>
     <Popular dynamicText="МОЖЕТ ПОНРАВИТЬСЯ"/>
-    <Footer/>
     </>
     )
 }
