@@ -7,6 +7,15 @@ import React, {
 } from "react";
 import { Link } from "react-router-dom";
 
+enum menuEn {
+    wardrobes = 'wardrobes',
+    kitchens='kitchens',
+    wallunits='wallunits',
+    hallways='hallways',
+	bedrooms='bedrooms',
+	kidrooms='kidrooms'
+}
+
 type HeaderProps = {
 	variant?: 'default' | 'tabless' | 'searchless'
 };
@@ -39,6 +48,65 @@ const Header = forwardRef<HTMLDivElement, HeaderProps>(({ variant = 'default' },
 			document.body.classList.remove("menu-open");
 		};
 	}, []);
+
+	const menuItems = [
+		{
+			key: menuEn.wardrobes,
+			label: 'ШКАФЫ',
+			content: (
+				<Link to="/category/closets" className="nav-link" onClick={() => setMobileMenuOpen(false)}>
+					Шкафы
+				</Link>
+			)
+		},
+		{
+			key: menuEn.kitchens,
+			label: 'КУХНИ',
+			content: (
+				<Link to="/category/kitchens" className="nav-link" onClick={() => setMobileMenuOpen(false)}>
+					Кухни
+				</Link>
+			)
+		},
+		{
+			key: menuEn.wallunits,
+			label: 'СТЕНКИ',
+			content: (
+				<Link to="/category/walls" className="nav-link" onClick={() => setMobileMenuOpen(false)}>
+					Стенки
+				</Link>
+			)
+		},
+		{
+			key: menuEn.hallways,
+			label: 'ПРИХОЖИЕ',
+			content: (
+				<Link to="/category/wardrobes" className="nav-link" onClick={() => setMobileMenuOpen(false)}>
+					Прихожие
+				</Link>
+			)
+		},
+		{
+			key: menuEn.bedrooms,
+			label: 'СПАЛЬНИ',
+			content: (
+				<Link to="/category/bedrooms" className="nav-link" onClick={() => setMobileMenuOpen(false)}>
+					Спальни
+				</Link>
+			)
+		},
+		{
+			key: menuEn.kidrooms,
+			label: 'ДЕТСКИЕ',
+			content: (
+				<Link to="/category/kidRooms" className="nav-link" onClick={() => setMobileMenuOpen(false)}>
+					Детские
+				</Link>
+			)
+		},
+		];
+	
+		const [toggles, setToggles] = useState<boolean[]>(Array(menuItems.length).fill(false));
 
 	return (
 		<header className={`header ${variant}`}>
@@ -147,7 +215,35 @@ const Header = forwardRef<HTMLDivElement, HeaderProps>(({ variant = 'default' },
 								<i className="fa-solid fa-xmark"></i>
 							</button>
 						</div>
-						<li>
+						    <div className='mobile-dropdown'>
+								{menuItems.map((item, index) => (
+									<div className="product-collapsible-card" key={item.key}>
+									<div
+										className="product-collapsible-header"
+										onClick={() => setToggles((prev) => {
+										const newState = [...prev];
+										newState[index] = !newState[index];
+										return newState;
+										})}
+									>
+										<h4 className="mobile-new-secondary">{item.label}</h4>
+										<i className={`fa-solid fa-chevron-up product-arrow-icon-top ${toggles[index] ? "expanded" : ""}`} />
+									</div>
+									<div
+										className={`product-collapsible-content ${toggles[index] ? 'expanded' : ''}`}
+										// style={{
+										// height: toggles[index] ? "10rem" : "0px",
+										// paddingBottom: toggles[index] ? "5%" : "0px",
+										// overflow: 'hidden',
+										// transition: 'height 0.3s ease'
+										// }}
+									>
+										{item.content}
+									</div>
+									</div>
+								))}
+							</div>
+						{/* <li>
 							<Link to="/category/closets" className="nav-link" onClick={() => setMobileMenuOpen(false)}>
 								Шкафы
 							</Link>
@@ -176,7 +272,7 @@ const Header = forwardRef<HTMLDivElement, HeaderProps>(({ variant = 'default' },
 							<Link to="/category/kidRooms" className="nav-link" onClick={() => setMobileMenuOpen(false)}>
 								Детские
 							</Link>
-						</li>
+						</li> */}
 					</ul>
 				</nav>
 			</div>
