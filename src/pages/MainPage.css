@@ -1007,7 +1007,7 @@ main {
         color: black;
         font-size: 2rem;
         margin-right: 10px;
-        margin-top: 10%;
+        margin-top: 35px;
         height: 20px;
         margin-left: auto;
     }
@@ -1229,6 +1229,10 @@ main {
         transform: translateY(-50%) rotate(180deg);
     }
 
+    .sidebar {
+        width: 100%;
+    }
+
     
 
     /* Полностью отключаем все анимации и эффекты карусели */
@@ -1241,6 +1245,16 @@ main {
     }
 }
 
+
+@media (max-width: 480px) {
+    .consultation-form h2 {
+        font-size: clamp(1rem, 1.5vw, 1.8rem);
+    }
+
+    .form-subtitle h3 {
+        font-size: clamp(1rem, 1.5vw, 1.8rem);
+    }
+}
 
 /* ==========================================================================
    Преимущества
@@ -3346,7 +3360,7 @@ main {
         font-size: .8rem;
         position: absolute;
         top: 27%;
-        right: 1.1rem;
+        right: 5%;
         transform: translateY(-50%);
         pointer-events: none;
     }

@@ -215,7 +215,7 @@ const Header = forwardRef<HTMLDivElement, HeaderProps>(({ variant = 'default' },
 								<i className="fa-solid fa-xmark"></i>
 							</button>
 						</div>
-						    <div className='mobile-dropdown'>
+						    <div className='sidebar'>
 								{menuItems.map((item, index) => (
 									<div className="product-collapsible-card" key={item.key}>
 									<div
