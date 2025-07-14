@@ -108,7 +108,7 @@ const AboutUs: React.FC = () => {
         <section className="about_us desktop-only">
             <div className="container_about">
                
-                <div id="con_content" className="conten">
+                <div id="con_content" className="conten-quality">
                    
                     <div id="text-with-line_content" className="text-with-line">
                         <div className="text-wrapper">
@@ -120,7 +120,7 @@ const AboutUs: React.FC = () => {
                     <div className="text-block_content">
                         <article className="section_content">
                             <div className="content_text">
-                                <h1>Мы гарантируем высокое качество нашей продукции и используем только лучшие материалы. Наша команда профессионалов следит за каждым этапом производства, чтобы вы получили идеальный результат.</h1>
+                                <h1 className="section-text">Мы гарантируем высокое качество нашей продукции и используем только лучшие материалы. Наша команда профессионалов следит за каждым этапом производства, чтобы вы получили идеальный результат.</h1>
                             </div>
                         </article>
                     </div>
@@ -131,7 +131,6 @@ const AboutUs: React.FC = () => {
                     <img src="./img/cont_2.jpg" alt="Пример работы 2" className="desktop-only"/>
                     <img src="./img/cont_3.jpg" alt="Пример работы 3" className="desktop-only"/>
                     <img src="./img/4.jpg" alt="Пример работы 4" className="desktop-only"/>
-                    <img src="./img/cont_1.jpg" alt="Пример работы 1" className="mobile-only"/>
                 </div>
             </div>
         </section>
@@ -139,7 +138,7 @@ const AboutUs: React.FC = () => {
 
         <section className="about_us desktop-only">
             <div className="container_about">
-                <div id="con_content" className="conten">
+                <div id="con_content" className="conten-quality">
                     <div id="text-with-line_content_1" className="text-with-line">
                         <div className="text-wrapper">
                             <p className="text_11" >ПОМОЖЕМ С <br/>ИДЕЕЙ</p>
@@ -150,7 +149,7 @@ const AboutUs: React.FC = () => {
                     <div className="text-block_content">
                         <article className="section_content">
                             <div className="content_text">
-                                <h1>Мы гарантируем высокое качество и экологичность нашей мебели. Используем только лучшие материалы, чтобы вы могли наслаждаться комфортом и безопасностью в вашем доме.</h1>
+                                <h1 className="section-text">Мы гарантируем высокое качество и экологичность нашей мебели. Используем только лучшие материалы, чтобы вы могли наслаждаться комфортом и безопасностью в вашем доме.</h1>
                             </div>
                         </article>
                     </div>
@@ -160,7 +159,6 @@ const AboutUs: React.FC = () => {
                     <img src="./img/2.jpg" alt="Пример работы 2" className="desktop-only"/>
                     <img src="./img/3.jpg" alt="Пример работы 3" className="desktop-only"/>
                     <img src="./img/4.jpg" alt="Пример работы 4" className="desktop-only"/>
-                    <img src="./img/about.jpg" alt="Пример работы 1" className="mobile-only"/>
                 </div>
             </div>
         </section>

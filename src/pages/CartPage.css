@@ -1,5 +1,5 @@
 .cart-page {
-    width: 80%;
+    width: 100%;
     margin: 0;
     padding: 0;
     font-family: 'ALS Schlange sans', sans-serif;
@@ -39,15 +39,14 @@
 }
 
 .cart-container {
-    display: grid;
-    grid-template-columns: 65% 35%;
-    gap: 0;
+    padding: 0 30px 30px;
+    display: flex;
+    justify-content: space-between;
     margin: 0;
-    min-height: calc(100vh - 200px);
+    /* min-height: calc(100vh - 200px); */
 }
 /* Левая часть с товарами */
 .cart-item {
-    max-width: 80%;
     display: grid;
     grid-template-columns: 300px 1fr 40px; /* Увеличил первую колонку с 200px */
     gap: 30px; /* Увеличил с 20px */
@@ -63,8 +62,7 @@
     padding: 60px 40px;
     position: sticky;
     top: 0;
-    height: 100vh;
-    overflow-y: auto;
+    height: fit-content;
 }
 
 /* Стили для списка товаров */
@@ -230,7 +228,7 @@
 
 
 /* Адаптивная верстка */
-@media (max-width: 1024px) {
+/* @media (max-width: 1024px) {
     .cart-container {
         grid-template-columns: 1fr;
     }
@@ -238,7 +236,7 @@
     .cart-summary {
         order: -1;
     }
-}
+} */
 
 .container {
     width: 100%;
@@ -253,7 +251,12 @@
 }
 
 
-@media (max-width: 768px) {
+@media (max-width: 1032px) {
+
+    .cart-container {
+        display: block;
+        padding: 0;
+    }
 
     .promo-code input {
         padding: 10px 15px;
@@ -279,14 +282,11 @@
 
     .checkout-btn {
         width: 70%;
+        padding: 8px;
     }
 
     .breadcrumbs a {
         margin-left: 5%;
-    }
-
-    .desktop-only {
-        display: none;
     }
 
     .cart-page {
@@ -311,7 +311,7 @@
     .item-image {
         aspect-ratio: 1/1;
         overflow: hidden;
-        width: 25%;
+        width: 15%;
         margin: 0;
     }
 
@@ -389,5 +389,23 @@
     }
     .quantity-controls {
         display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .item-image {
+        aspect-ratio: 1/1;
+        overflow: hidden;
+        width: 20%;
+        margin: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .item-image {
+        aspect-ratio: 1/1;
+        overflow: hidden;
+        width: 25%;
+        margin: 0;
     }
 }

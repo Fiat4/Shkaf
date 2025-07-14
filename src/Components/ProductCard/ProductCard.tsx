@@ -12,9 +12,11 @@ const ProductCard: React.FC = () => {
                         <p className="product-description__cat">Максимальная функциональность</p>
                         <div className="product-price-container__cat">
                             <span className="product-price__cat">160 000 руб</span>
-                            <div className="button-container">
+                            <div className="product-button-container">
                                 <button className="add-to-cart-button" >ДОБАВИТЬ В КОРЗИНУ</button>
-                                <button className="favorite-button">♡</button>
+                                <button className="product-favorite-button">
+                                    <i className="fa-regular fa-heart"></i>
+                                </button>
                             </div>
                         </div>
                     </div>

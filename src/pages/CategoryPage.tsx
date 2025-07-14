@@ -41,6 +41,23 @@ const CategoryPage: React.FC<ICategoryPageProps> = ({product}) => {
         }, 500);
     };
 
+    const useWindowWidth = () => {
+    const [width, setWidth] = useState<number | null>(null);
+
+    useEffect(() => {
+        const handleResize = () => setWidth(window.innerWidth);
+        handleResize();
+
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
+    return width;
+    };
+
+    const windowWidth = useWindowWidth();
+    const isMobile = windowWidth !== null && windowWidth <= 768;
+
     return (
     <>
         <HeadMeta/>
@@ -54,20 +71,21 @@ const CategoryPage: React.FC<ICategoryPageProps> = ({product}) => {
                     <span style={{color: "black"}}>{product}</span>
                 </div>
             </div>
-            <img className="top-img" src="../img/kitchen_main.jpg" alt="Кухни"/>
-            <div className="category-title-holder">
-                
-                <h1 className="breadcrumb_title">{product.toUpperCase()}</h1>
-                
-                <button className="open-filters-button" onClick={handleClick}>
-                    <i className="fa-solid fa-sliders fa-rotate-270"></i>
-                </button>
+            <div className="mobile-category-top">
+                <img className="top-img" src="../img/kitchen_main.jpg" alt="Кухни"/>
+                <div className="category-title-holder">
+                    <h1 className="breadcrumb_title">{product.toUpperCase()}</h1>
+                    <button className="open-filters-button" onClick={handleClick}>
+                        <i className="fa-solid fa-sliders fa-rotate-270"></i>
+                    </button>
+                </div>
             </div>
+            
             
             
 
             <div className="filter-overlay">
-                <div className="filter-overlay-inner" style={{ paddingTop: `${headerHeight + 15}px` }}>
+                <div className="filter-overlay-inner" style={isMobile ? { paddingTop: `${headerHeight + 15}px` } : {}}>
                     <div className="category-title-holder">
                         <h1 className="breadcrumb_title">{product.toUpperCase()}</h1>
                         <button className="open-filters-button" onClick={() => document.body.classList.remove('filters-open')}>

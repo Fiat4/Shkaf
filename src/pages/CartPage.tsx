@@ -115,6 +115,7 @@ const CartPage: React.FC = () => {
         </div>
     </main>
     <Popular dynamicText="МОЖЕТ ПОНРАВИТЬСЯ"/>
+    <Footer/>
     </>
     )
 }

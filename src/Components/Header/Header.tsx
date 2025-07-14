@@ -243,36 +243,44 @@ const Header = forwardRef<HTMLDivElement, HeaderProps>(({ variant = 'default' },
 									</div>
 								))}
 							</div>
-						{/* <li>
-							<Link to="/category/closets" className="nav-link" onClick={() => setMobileMenuOpen(false)}>
-								Шкафы
-							</Link>
-						</li>
-						<li>
-							<Link to="/category/kitchens" className="nav-link" onClick={() => setMobileMenuOpen(false)}>
-								Кухни
-							</Link>
-						</li>
-						<li>
-							<Link to="/category/walls" className="nav-link" onClick={() => setMobileMenuOpen(false)}>
-								Стенки
-							</Link>
-						</li>
-						<li>
-							<Link to="/category/wardrobes" className="nav-link" onClick={() => setMobileMenuOpen(false)}>
-								Прихожие
-							</Link>
-						</li>
-						<li>
-							<Link to="/category/bedrooms" className="nav-link" onClick={() => setMobileMenuOpen(false)}>
-								Спальни
-							</Link>
-						</li>
-						<li>
-							<Link to="/category/kidRooms" className="nav-link" onClick={() => setMobileMenuOpen(false)}>
-								Детские
-							</Link>
-						</li> */}
+						<div className="desktop-sidebar desktop-only">
+							<li>
+								<Link to="/category/closets" className="nav-link" onClick={() => setMobileMenuOpen(false)}>
+									Шкафы
+								</Link>
+							</li>
+							<li>
+								<Link to="/category/kitchens" className="nav-link" onClick={() => setMobileMenuOpen(false)}>
+									Кухни
+								</Link>
+							</li>
+							<li>
+								<Link to="/category/walls" className="nav-link" onClick={() => setMobileMenuOpen(false)}>
+									Стенки
+								</Link>
+							</li>
+							<li>
+								<Link to="/category/wardrobes" className="nav-link" onClick={() => setMobileMenuOpen(false)}>
+									Прихожие
+								</Link>
+							</li>
+							<li>
+								<Link to="/category/bedrooms" className="nav-link" onClick={() => setMobileMenuOpen(false)}>
+									Спальни
+								</Link>
+							</li>
+							<li>
+								<Link to="/category/kidRooms" className="nav-link" onClick={() => setMobileMenuOpen(false)}>
+									Детские
+								</Link>
+							</li>
+							<li>
+								<input type="text" placeholder="Поиск" className="search-input"/>
+							</li>
+							<li>
+								<i className="search-icon"></i>
+							</li>
+						</div>
 					</ul>
 				</nav>
 			</div>

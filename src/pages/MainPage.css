@@ -575,7 +575,7 @@ main {
 
 .consultation-form {
     width: clamp(30%, 35vw, 35%);
-    padding: clamp(3vh, 10vh, 15vh) clamp(1.5vw, 3vw, 4vw);
+    padding: 3rem 1.5rem;
     background: rgba(0, 0, 0, 0.1);
     border-radius: clamp(0.8rem, 1.5vw, 2rem);
     margin: auto 5%;
@@ -837,10 +837,19 @@ main {
     display: none;
 }
 
+.sidebar {
+    display: none;
+}
 
-@media (min-width: 768px) {
+.desktop-sidebar {
+    display: flex;
+    width: 100%;
+}
+
+
+@media (min-width: 768px) and (max-width: 1024px) {
     .foto_container {
-        min-height: 50rem;
+        height: 35rem;
     }
 }
 
@@ -982,8 +991,14 @@ main {
     .form-subtitle h3 {
         font-size: 1.3rem;
         font-weight: 400;
-        
     }
+
+    .banner-title {
+        font-size: 1.7rem;
+        font-weight: 300;
+        margin-top: 9%;
+    }
+
     .mobile-new-container {
         font-family: Bounded;
         font-weight: 300 !important;
@@ -1230,6 +1245,7 @@ main {
     }
 
     .sidebar {
+        display: block;
         width: 100%;
     }
 
@@ -1262,7 +1278,7 @@ main {
 
    .about_us {
     width: 100%;
-    margin-bottom: 15em;
+    margin-bottom: 5em;
 }
 
 .container_about {
@@ -1275,7 +1291,6 @@ main {
     display: flex;
     justify-content: center;
     position: relative;
-    margin-bottom: 3rem;
 }
 
 .main-content-wrapper {
@@ -1300,7 +1315,7 @@ main {
     margin-bottom: 0%;
 }
 .text_11 {
-    font-size: clamp(3rem, 4vw, 5vh);
+    font-size: clamp(2rem, 4vw, 5vh);
     font-family: 'Bounded';
     display: inline;
     white-space: normal;
@@ -1313,41 +1328,25 @@ main {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 2em;
+    justify-content: space-between;
     width: 100%;
-    max-width: 1200px;
     margin: 0 auto;
     padding: 0;
 }
 
 .full-width-images img {
-    width: calc(25% - 7.5em);
+    width: 24%;
     aspect-ratio: 1 / 1;
     object-fit: cover;
-    border-radius: 8px;
     box-shadow: 0 0 10vh 5px rgba(200, 200, 200, 0.5);
 }
 
 /* Адаптивность для разных разрешений */
 @media (min-width: 1024px) and (max-width: 1439px) {
-    .full-width-images {
-        max-width: 1000px;
-        gap: 1.5em;
-    }
-    
-    .full-width-images img {
-        width: calc(25% - 5.22em);
-    }
-}
 
-@media (min-width: 1440px) and (max-width: 2559px) {
-    .full-width-images {
-        max-width: 2600px;
-        gap: 2em;
-    }
-    
-    .full-width-images img {
-        width: calc(25% - 5.99em);
+
+    .category-container {
+        padding: 50% 0;
     }
 }
 
@@ -1359,18 +1358,6 @@ main {
     
     .full-width-images img {
         width: calc(25% - 8.99em);
-    }
-}
-
-@media (max-width: 768px) {
-    .full-width-images {
-        gap: 1.5em;
-        padding: 0;
-    }
-    
-    .full-width-images img {
-        width: calc(50% - 7.75em);
-        border-radius: 4px;
     }
 }
 
@@ -1395,24 +1382,25 @@ main {
         margin-bottom: 15px;
     }
 }
-.conten{
+.conten {
     display: flex;
-    gap: 10em;
-
+    gap: 5%;
+    height: 23rem;
+    margin-top: 1em;
 }
 
 #con_content{
-    margin-bottom: 5em;
+    margin-bottom: 1em;
 }
 
 
 .section_content{
     max-width: 100%;
 }
+
 .image_about {
     width: 50%;
     max-width: 920px;
-    height: 850px;
     object-fit: cover;
     object-position: bottom;
     box-shadow: 0 0 10vh 5px rgba(0, 0, 0, 0.5);
@@ -1429,9 +1417,15 @@ main {
     max-width: 30%;
     margin-left: auto;
 }
+
+.conten-quality {
+    display: flex;
+}
+
 .section-text {
-    font-size: clamp(1rem, 1.5vw, 1.5rem);
+    font-size: clamp(.7rem, 1.2vw, 1.2rem);
     line-height: 1.6;
+    font-weight: 400;
     /* font-family: 'Bounded'; */
 }
 .content_text {
@@ -1454,7 +1448,7 @@ main {
 .image_about_cont {
     width: 100%;
     max-width: 900px;
-    height: 500px;
+    height: 10rem;
     object-fit: cover;
     object-position: bottom;
     box-shadow: 0 0 10vh 5px rgba(0, 0, 0, 0.5);
@@ -1516,7 +1510,7 @@ main {
 
 .products-title {
     font-family: 'Bounded';
-    font-size: 3rem;
+    font-size: 2rem;
     font-weight: normal;
     white-space: normal;
     word-break: break-word;
@@ -1666,7 +1660,7 @@ main {
 
 .reviews-section {
     margin-bottom: 20vh;
-    padding: clamp(2rem, 3vw, 4rem) 0;
+    padding: clamp(2rem, 3vw, 4rem) 30px;
 }
 
 .reviews-header {
@@ -2132,12 +2126,6 @@ main {
         margin-top: 3%;
     }
 
-    .banner-title {
-        font-size: 1.7rem;
-        font-weight: 300;
-        margin-top: 9%;
-    }
-
     .personal-data-text {
         font-size: 0.9rem;
     }
@@ -2521,7 +2509,7 @@ main {
     }
 
     .section-text {
-        font-size: clamp(1.2rem, 1.2vw, 1.5rem);
+        font-size: clamp(.6rem, 1.1vw, 1.1rem);
     }
 
     .image_1 {
@@ -2637,12 +2625,11 @@ main {
 
     .foto_container {
         width: clamp(90%, 95vw, 95%);
-        height: clamp(50vh, 50vh, 20vh);
+        height: 50rem;
     }
 
     .consultation-form {
         width:44%;
-        padding: 5em;
     }
 
     .form-title,
@@ -2709,24 +2696,27 @@ main {
     .category-container{
         margin: 20vh 0 20vh 0;
     }
+
     .image_1 {
         width: 50%;
         height: clamp(15rem, 20vw, 25rem);
     }
+
     .conten{
-        gap: 5em;
+        height: 34rem;
     }
+
     .image_about {
         width: 50%;
         max-width: 920px;
-        height: 550px;
+        height: 100%;
 
     }
 
     .image_about_cont {
         width: 100%;
         max-width: 900px;
-        height: 300px;
+        height: 18rem;
     }
     #con_content{
         gap: 5em;
@@ -3487,7 +3477,7 @@ main {
     }
 
     .mobile-search-icon.tabless {
-        top: 40%;
+        top: 25px;
     }
 
     .header.searchless {
