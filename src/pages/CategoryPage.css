@@ -121,7 +121,7 @@
 .product-button-container {
     display: flex;
     justify-content: space-between;
-    margin-top: 4vh;
+    margin-top: 1rem;
 }
 
 .add-to-cart-button, .add-to-cart {
@@ -1197,19 +1197,19 @@
 
 @media (max-width: 1024px) {
     .product-card__cat{
-        height: 21rem;
+        height: 20rem;
     }  
 }
 
 @media (min-width: 1024px) {
     .product-card__cat{
-        height: 24rem;
+        height: 22.5rem;
     }
 }
 
 @media (min-width: 1440px) {
     .product-card__cat{
-        height: 21rem;
+        height: 20rem;
     }
 
         .products-grid__cat {
@@ -1222,6 +1222,12 @@
 
     .add-to-cart-button {
         font-size: 1rem !important;
+    }
+}
+
+@media (min-width: 1700px) {
+    .product-card__cat{
+        height: 22.5rem;
     }
 }
 
