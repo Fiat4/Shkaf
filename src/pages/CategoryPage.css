@@ -1211,6 +1211,36 @@
     .product-card__cat{
         height: 21rem;
     }
+
+        .products-grid__cat {
+        grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    }
+
+    .product-button-container button {
+        height: 3.5vh;
+    }
+
+    .add-to-cart-button {
+        font-size: 1rem !important;
+    }
+}
+
+@media (min-width: 2560px) {
+    .product-card__cat{
+        height: 25rem;
+    }
+
+    .products-grid__cat {
+        grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    }
+
+    .product-button-container button {
+        height: 3.5vh;
+    }
+
+    .add-to-cart-button {
+        font-size: 1rem !important;
+    }
 }
 
 @media (min-width: 768px) {
