@@ -1350,17 +1350,6 @@ main {
     }
 }
 
-@media (min-width: 2560px) {
-    .full-width-images {
-        max-width: 2600px;
-        gap: 2.5em;
-    }
-    
-    .full-width-images img {
-        width: calc(25% - 8.99em);
-    }
-}
-
 /* Адаптивность */
 @media (max-width: 768px) {
     .conten {
@@ -2167,6 +2156,9 @@ main {
         --base-font-size: 18px;
     }
 
+    .about_us {
+        margin-top: 3rem;
+    }
     .container_2 {
         gap: clamp(0.8rem, 1vw, 1.2rem);
     }
@@ -2278,13 +2270,18 @@ main {
 
     
     .text-block {
-        max-width:45%;
         gap: clamp(1.5rem, 2vw, 3rem);
     }
 
     .text_11 {
         font-size: clamp(3.5rem, 2.5vw, 3rem);
     }
+
+    .conten {
+        height: 65rem;
+        margin-top: 3rem;
+    }
+
     .image_about_cont{
         width: 100%;
         max-width: none;
@@ -2298,14 +2295,12 @@ main {
     .section-text {
         font-size: clamp(1.7rem, 1vw, 1.1rem);
     }
-    .conten{
-        gap: 10em;
-    }
+
     .image_about{
         width: 65%;
         max-width: 1200px;
-        height: 1100px;
     }
+
     .image_1 {
         width: 50%;
         height: clamp(45rem, 30vw, 35rem);
@@ -2317,7 +2312,7 @@ main {
 
     .products-title {
         font-size: clamp(3.5rem, 2vw, 2.5rem);
-        margin-bottom: 10vh;
+        margin-bottom: 3vh;
     }
 
     .product-card {
