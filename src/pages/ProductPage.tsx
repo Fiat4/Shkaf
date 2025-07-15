@@ -261,7 +261,7 @@ const ProductPage: React.FC = () => {
         <h2 className="reviews-title">ОТЗЫВЫ И РЕЙТИНГ</h2>
         <Link to="/review" className="open-all-reviews desktop-only">открыть все &#8594;</Link>
         <div className="reviews-columns">
-            <div className="ratings-column">
+            <div className="ratings-column mobile">
                 <div className="ratings-micro-columns">
                     <div className="rating-score">
                         <div className='rating-top'>
@@ -314,8 +314,11 @@ const ProductPage: React.FC = () => {
             <div className="ratings-column desktop-only">
                 <div className="ratings-micro-columns">
                     <div className="rating-score">
-                        4.8 
-                        <i className="fa-solid fa-star"></i>
+                        <div className='rating-score-top'>
+                            4.8 
+                            <i className="fa-solid fa-star"></i>
+                        </div>
+                        
                         <div className="rating-bot-text">на основе 12 отзывов</div>
                     </div>
                     <div className="review-recommend">
@@ -362,7 +365,17 @@ const ProductPage: React.FC = () => {
                             -
                     </div>
                     <div className="review">
-                        <h3>МИХАИЛ КОРОВИН <span className="star">&#128970;&#128970;&#128970;&#128970;&#128970;</span></h3>
+                        <div className='review-top'>
+                            <h3>МИХАИЛ КОРОВИН</h3>
+                            <div className='star'>
+                                <i className="fa-solid fa-star"></i>
+                                <i className="fa-solid fa-star"></i>
+                                <i className="fa-solid fa-star"></i>
+                                <i className="fa-solid fa-star"></i>
+                                <i className="fa-solid fa-star"></i>
+                            </div>
+                        </div>
+                        
                         <div className="review-text">
                             <p>Отличная кухня, очень удобная и практичная. Материал качественный, дизайн соответствует моим ожиданиям. Спасибо за оперативную доставку и установку!</p>
                             <img src="../img/kitchen.jpg" alt="Отзыв 1"/>
@@ -423,7 +436,7 @@ const ProductPage: React.FC = () => {
                 <span>ПОХОЖИЕ ТОВАРЫ</span>
             </h2>
         </div>
-        <div className="products-grid">
+        <div className="products-grid__cat">
             <ProductCard/>
             <ProductCard/>
             <ProductCard/>
