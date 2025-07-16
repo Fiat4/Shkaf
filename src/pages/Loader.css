@@ -1,0 +1,66 @@
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #fff;
+}
+
+.loader-circles {
+  display: flex;
+  gap: 40px;
+  align-items: flex-end;
+}
+
+.loader-circle {
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #0e0e0e;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  position: relative;
+}
+
+.loader-circle.left {
+  animation: bounce 1.2s infinite;
+  animation-delay: 0s;
+}
+
+.loader-circle.center {
+  background: #fff;
+  border: 2px solid #0e0e0e;
+  animation: bounce 1.2s infinite;
+  animation-delay: 0.4s;
+}
+
+.loader-circle.right {
+  animation: bounce 1.2s infinite;
+  animation-delay: 0.8s;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  20% {
+    transform: translateY(-40px);
+  }
+  40%, 80% {
+    transform: translateY(0);
+  }
+  60% {
+    transform: translateY(20px);
+  }
+}
+
+.loader-logo {
+  width: 160px;
+  height: 160px;
+  object-fit: contain;
+  user-select: none;
+  pointer-events: none;
+} 
