@@ -1,10 +1,12 @@
-import { Link, NavLink, Outlet, useLocation, useParams } from 'react-router-dom'
+import { Link, NavLink, Outlet, useLocation, useParams, useNavigate } from 'react-router-dom'
 import './AdminPage.css'
 import { useEffect, useState } from 'react'
+
 const AdminPage:React.FC = () => {
     const [active, setActive] = useState<string>()
     const param = useLocation()
     const [darkMode, setDarkMode] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
       if (darkMode) {
@@ -26,14 +28,6 @@ const AdminPage:React.FC = () => {
             <li><NavLink to="/admin/prods"><i className="fas fa-box"></i> Все товары</NavLink></li>
             <li><NavLink to="/admin/pops"><i className="fas fa-star"></i> Популярное</NavLink></li>
             <li><NavLink to="/admin/new"><i className="fas fa-clock"></i> Новинки</NavLink></li>
-            <li><NavLink to="/admin/cats" className="categories-link"><i className="fas fa-tags"></i> Категории</NavLink>
-                <ul>
-                    <li><a href="#" data-category="Шкафы">Шкафы</a></li>
-                    <li><a href="#" data-category="Кровати">Кровати</a></li>
-                    <li><a href="#" data-category="Кухни">Кухни</a></li>
-                    <li><a href="#" data-category="Стенки">Стенки</a></li>
-                </ul>
-            </li>
             <li><NavLink to="/admin/reviews"><i className="fas fa-comments"></i> Отзывы</NavLink></li>
             <li><NavLink to="/admin/requests"><i className="fas fa-file-alt"></i> Заявки</NavLink></li>
             <li><NavLink to="/admin/user"><i className="fas fa-users"></i> Пользователь</NavLink></li>

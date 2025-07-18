@@ -17,7 +17,6 @@ import Loader from "./pages/Loader";
 import React, { useState, useEffect } from 'react';
 import AdminUser from "./Components/AdminUser/AdminUser";
 
-
 function App() {
 	const [loading, setLoading] = useState(true);
 

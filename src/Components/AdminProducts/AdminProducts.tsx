@@ -1,17 +1,31 @@
 import { useState } from "react"
 
+const categories = [
+  "Шкафы",
+  "Кухни",
+  "Стенки",
+  "Прихожие",
+  "Спальни",
+  "Детские"
+];
+
 const AdminProducts: React.FC = () => {
     const [modal, setModal] = useState<boolean>(false)
+    const [selectedCategory, setSelectedCategory] = useState<string>("");
     return (
        <>
         <div className="main-content">
         <div className="content-header">
             <h1><i className="fas fa-box"></i> Управление товарами</h1>
-            <div className="header-right">
+            <div className="header-right" style={{display:'flex', alignItems:'center', gap:16}}>
                 <div className="total-products">
                     <i className="fas fa-cubes"></i>
                     Всего товаров: <span id="totalProductsCount">0</span>
                 </div>
+                <select value={selectedCategory} onChange={e => setSelectedCategory(e.target.value)} style={{padding:'6px 12px', fontSize:16}}>
+                  <option value="">Все категории</option>
+                  {categories.map(cat => <option key={cat} value={cat}>{cat}</option>)}
+                </select>
                 <button onClick={() => {setModal(true)}} className="add-button" id="addProductBtn">
                     <i className="fas fa-plus"></i> Добавить товар
                 </button>
