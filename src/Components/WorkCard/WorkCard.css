@@ -1,0 +1,36 @@
+.work-card {
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 24px;
+}
+
+.work-card__image-wrapper {
+  width: 100%;
+  aspect-ratio: 1.3/1;
+  overflow: hidden;
+}
+
+.work-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.work-card__info {
+  padding: 12px 10px 16px 10px;
+}
+
+.work-card__title {
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 6px;
+}
+
+.work-card__description {
+  font-size: 0.95rem;
+  color: #444;
+} 
