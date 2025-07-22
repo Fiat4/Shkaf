@@ -63,7 +63,7 @@ const MainPage = () => {
 
 				<PopCats scrollClass={scrollClass} />
 
-				<AboutUs/>
+				<AboutUs />
 
 				<Popular />
 

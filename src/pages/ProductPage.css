@@ -9,7 +9,8 @@
     margin-left: 5%;
 }
 
-.breadcrumb a, .breadcrumb span {
+.breadcrumb a,
+.breadcrumb span {
     font-family: 'ALS Schlange sans';
     font-size: 2.2vh;
     color: #999;
@@ -594,7 +595,8 @@
     width: 100%;
 }
 
-.review-left-arrow, .review-right-arrow {
+.review-left-arrow,
+.review-right-arrow {
     width: 10%;
     text-align: center;
 }
@@ -918,7 +920,7 @@
     .review-content .review-stars i {
         color: black;
         margin: 0 2px;
-        }
+    }
 
     .product-review-text {
         margin-top: 0.5rem;
@@ -1042,7 +1044,7 @@
         padding: 5px 5% 3%;
         border-bottom: #a2a1a1 solid 1px;
     }
-    
+
     .product-collapsible-header h4 {
         color: #a2a1a1;
         font-size: 1rem;
@@ -1083,7 +1085,7 @@
         flex-direction: column;
         justify-content: center;
         width: 100%;
-        
+
     }
 
     .review-recommend {
@@ -1096,7 +1098,9 @@
         width: auto;
     }
 
-    .rating-stars-column, .rating-lines-column, .rating-percentages-column {
+    .rating-stars-column,
+    .rating-lines-column,
+    .rating-percentages-column {
         display: flex;
         flex-direction: column;
         height: auto;
@@ -1197,7 +1201,8 @@
 
     .fade-out {
         opacity: 0;
-        transform: translateX(-20px); /* or 20px for opposite direction */
+        transform: translateX(-20px);
+        /* or 20px for opposite direction */
     }
 
     .review-img-wrapper {
@@ -1220,6 +1225,7 @@
         height: 100%;
         object-fit: cover;
     }
+
     .review-button.left {
         color: black;
         left: 10px;
@@ -1306,4 +1312,4 @@
     .desktop-only {
         display: none;
     }
-} 
+}

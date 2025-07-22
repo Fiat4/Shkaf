@@ -8,13 +8,13 @@ interface PopCatsProps {
 const PopCats: React.FC<PopCatsProps> = ({ scrollClass }) => {
 	const [activeIndex, setActiveIndex] = useState(1);
 	const [categoryItems] = useState([
-		{ id: 1, image: "./img/bed.jpg", alt: "Кровати", name: "NIGGA", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", price: "10000", href: "#", new: true},
-		{ id: 2, image: "./img/shkaf.jpg", alt: "Шкафы", name: "NIGGA", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", price: "10000", href: "#", new: false},
-		{ id: 3, image: "./img/kit.jpg", alt: "Кухни", name: "NIGGA", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", price: "10000", href: "#", new: false},
-		{ id: 4, image: "./img/wal.jpg", alt: "Стенки", name: "NIGGA", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", price: "10000", href: "#", new: false},
-		{ id: 5, image: "./img/wal.jpg", alt: "Стенки", name: "NIGGA", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", price: "10000", href: "#", new: false},
-		{ id: 6, image: "./img/wal.jpg", alt: "Стенки", name: "NIGGA", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", price: "10000", href: "#", new: false},
-		{ id: 7, image: "./img/wal.jpg", alt: "Стенки", name: "NIGGA", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", price: "10000", href: "#", new: false},
+		{ id: 1, image: "./img/bed.jpg", alt: "Кровати", name: "NIGGA", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", price: "10000", href: "#", new: true },
+		{ id: 2, image: "./img/shkaf.jpg", alt: "Шкафы", name: "NIGGA", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", price: "10000", href: "#", new: false },
+		{ id: 3, image: "./img/kit.jpg", alt: "Кухни", name: "NIGGA", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", price: "10000", href: "#", new: false },
+		{ id: 4, image: "./img/wal.jpg", alt: "Стенки", name: "NIGGA", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", price: "10000", href: "#", new: false },
+		{ id: 5, image: "./img/wal.jpg", alt: "Стенки", name: "NIGGA", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", price: "10000", href: "#", new: false },
+		{ id: 6, image: "./img/wal.jpg", alt: "Стенки", name: "NIGGA", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", price: "10000", href: "#", new: false },
+		{ id: 7, image: "./img/wal.jpg", alt: "Стенки", name: "NIGGA", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", price: "10000", href: "#", new: false },
 	]);
 
 	useEffect(() => {
@@ -24,7 +24,7 @@ const PopCats: React.FC<PopCatsProps> = ({ scrollClass }) => {
 	useEffect(() => {
 		// Проверяем, является ли устройство мобильным
 		const isMobile = window.innerWidth <= 768;
-		
+
 		// На мобильных устройствах не применяем анимации слайдера
 		if (isMobile) {
 			return;
@@ -104,9 +104,8 @@ const PopCats: React.FC<PopCatsProps> = ({ scrollClass }) => {
 				} else {
 					// Остальные элементы
 					const direction = position > 0 ? 1 : -1;
-					element.style.transform = `translateX(${
-						direction * 200
-					}%) translateZ(-300px) scale(0.4)`;
+					element.style.transform = `translateX(${direction * 200
+						}%) translateZ(-300px) scale(0.4)`;
 					element.style.opacity = "0";
 					element.style.zIndex = "0";
 					element.classList.remove("active");
@@ -148,10 +147,10 @@ const PopCats: React.FC<PopCatsProps> = ({ scrollClass }) => {
 	};
 
 	return (
-		 <section id="new" className="popular-section">
-            <div className="katalog_container">
-                <h2 className="mainpage-title products-title">НОВИНКИ</h2>
-            </div>
+		<section id="new" className="popular-section">
+			<div className="katalog_container">
+				<h2 className="mainpage-title products-title">НОВИНКИ</h2>
+			</div>
 			<div className="mobile-new-container">
 				{categoryItems.map((item, index) => (
 					<div className="mobile-new-item">
@@ -174,31 +173,31 @@ const PopCats: React.FC<PopCatsProps> = ({ scrollClass }) => {
 					</div>
 				))}
 			</div>
-			{window.innerWidth > 768 ? 
-			<div className="category-container">
-                {categoryItems.map((item, index) => (
-					<article 
-						key={item.id} 
-						className="category-item"
-						onClick={() => handleSlideClick(index)}
-					>
-						<a href="#" className="category-link">
-							<img
-								src={item.image}
-								alt={item.alt}
-								className="category-image"
-								loading="lazy"
-							/>
-						</a>
-					</article>
-				))}
-            </div> : null}
-            
-        </section>
+			{window.innerWidth > 768 ?
+				<div className="category-container">
+					{categoryItems.map((item, index) => (
+						<article
+							key={item.id}
+							className="category-item"
+							onClick={() => handleSlideClick(index)}
+						>
+							<a href="#" className="category-link">
+								<img
+									src={item.image}
+									alt={item.alt}
+									className="category-image"
+									loading="lazy"
+								/>
+							</a>
+						</article>
+					))}
+				</div> : null}
+
+		</section>
 	);
 };
 
 export default PopCats;
 
-				
+
 

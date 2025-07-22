@@ -1,6 +1,6 @@
 import React from "react";
 
-const PopCatsItem = ({}) => {
+const PopCatsItem = ({ }) => {
 	return (
 		// <article
 		// 	className="category-item"

@@ -19,6 +19,7 @@
     "react-dom": "^19.1.0",
     "react-helmet": "^2.0.0",
     "react-lodash": "^0.1.2",
+    "react-photo-view": "^1.2.7",
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^7.6.2",
     "react-scripts": "^5.0.1",
