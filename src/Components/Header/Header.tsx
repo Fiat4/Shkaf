@@ -146,7 +146,8 @@ const Header = forwardRef<HTMLDivElement, HeaderProps>(({ variant = 'default' },
 								<a href="#about">О НАС</a>
 								<a href="#sales">АКЦИИ</a>
 								<a href="#new">НОВИНКИ</a>
-								<a href="#reviews">ОТЗЫВЫ</a>
+								<a href="/reviews">ОТЗЫВЫ</a>
+								<a href="/works">ПОРТФОЛИО</a>
 							</nav>
 						</div>
 						{/* <li> */}
@@ -171,7 +172,7 @@ const Header = forwardRef<HTMLDivElement, HeaderProps>(({ variant = 'default' },
 						</Link>
 						{/* </li> */}
 						{/* <li> */}
-						<Link to="asfas" className="nav-link desktop-nav-link">
+						<Link to="#new" className="nav-link desktop-nav-link">
 							АКЦИИ
 						</Link>
 						{/* </li> */}
@@ -186,9 +187,7 @@ const Header = forwardRef<HTMLDivElement, HeaderProps>(({ variant = 'default' },
 						</Link>
 						{/* </li> */}
 						{/* <li> */}
-						<Link to="works" className="nav-link desktop-nav-link">
-							НАШИ РАБОТЫ
-						</Link>
+
 						{/* </li> */}
 
 						<li className="icons-container">
@@ -279,6 +278,9 @@ const Header = forwardRef<HTMLDivElement, HeaderProps>(({ variant = 'default' },
 									Детские
 								</Link>
 							</li>
+							<Link to="works" className="nav-link desktop-nav-link">
+								НАШИ РАБОТЫ
+							</Link>
 							<li>
 								<input type="text" placeholder="Поиск" className="search-input" />
 							</li>

@@ -67,7 +67,7 @@ const AboutUs: React.FC = () => {
                     <div
                         className="collapsible-content"
                         style={{
-                            height: toggletop ? "6rem" : "0px",
+                            height: toggletop ? "7.5rem" : "0px",
                             paddingBottom: toggletop ? "5%" : "0px",
                         }}>
                         <h4 className="mobile-new-secondary">Мы гарантируем высокое качество и экологичность нашей мебели. Используем только лучшие материалы, чтобы вы могли наслаждаться комфортом и безопасностью в вашем доме.</h4>
@@ -91,7 +91,7 @@ const AboutUs: React.FC = () => {
                     <div
                         className="collapsible-content"
                         style={{
-                            height: togglebottom ? "6rem" : "0px",
+                            height: togglebottom ? "7.5rem" : "0px",
                             paddingBottom: togglebottom ? "5%" : "0px",
                         }}>
                         <h4 className="mobile-new-secondary">Мы гарантируем высокое качество и экологичность нашей мебели. Используем только лучшие материалы, чтобы вы могли наслаждаться комфортом и безопасностью в вашем доме.</h4>

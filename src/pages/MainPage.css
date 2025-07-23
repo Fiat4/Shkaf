@@ -697,10 +697,6 @@ main {
     content: '✓';
     position: absolute;
     color: #1a2517;
-    font-size: clamp(0.8rem, 1vw, 1.2rem);
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
 }
 
 .personal-data-text {
@@ -735,8 +731,8 @@ main {
         width: 100%;
     }
 
-    .personal-data {
-        display: none;
+    .personal-data-text {
+        font-size: .5rem;
     }
 
     .form-input {
@@ -1405,7 +1401,6 @@ main {
 .conten {
     display: flex;
     gap: 5%;
-    height: 23rem;
     margin-top: 1em;
 }
 
@@ -1427,7 +1422,6 @@ main {
 }
 
 .text-block {
-    flex: 1;
     /* Занимает оставшееся пространство */
     display: flex;
     flex-direction: column;
@@ -1446,7 +1440,7 @@ main {
 }
 
 .section-text {
-    font-size: clamp(.7rem, 1.2vw, 1.2rem);
+    font-size: .8rem;
     line-height: 1.6;
     font-weight: 400;
     /* font-family: 'Bounded'; */
@@ -1475,7 +1469,6 @@ main {
 .image_about_cont {
     width: 100%;
     max-width: 900px;
-    height: 10rem;
     object-fit: cover;
     object-position: bottom;
     box-shadow: 0 0 10vh 5px rgba(0, 0, 0, 0.5);
@@ -2117,12 +2110,6 @@ main {
         margin-bottom: 9%;
     }
 
-    .personal-data-text {
-        font-size: clamp(1.4rem, 1.3vw, 1.4rem);
-
-
-    }
-
     .product-card {
         flex: 0 0 clamp(120px, 35vw, 200px);
     }
@@ -2169,10 +2156,6 @@ main {
         padding: 0.8rem 1.2rem;
         font-size: 0.7rem;
         margin-top: 3%;
-    }
-
-    .personal-data-text {
-        font-size: 0.9rem;
     }
 
     .product-image {
@@ -2865,14 +2848,6 @@ main {
         display: none;
     }
 
-    .personal-data input[type="checkbox"] {
-
-        width: clamp(2.2rem, 1.8vw, 2rem);
-        height: clamp(2.2rem, 1.8vw, 2rem);
-        border-radius: 10px;
-
-    }
-
     .nav-links {
         position: fixed;
         top: 0;
@@ -3414,10 +3389,16 @@ main {
     .mobile-search-icon {
         font-size: .8rem;
         position: absolute;
-        top: 27%;
+        top: 25px;
         right: 5%;
         transform: translateY(-50%);
         pointer-events: none;
+    }
+}
+
+@media (max-width: 383px) {
+    .mobile-nav-tabs a {
+        font-size: 7.5px;
     }
 }
 
@@ -3516,7 +3497,7 @@ main {
     .mobile-nav-tabs {
         display: flex;
         justify-content: space-between;
-        width: 90%;
+        width: 100%;
         margin: 10px auto;
         border-top: 1px solid rgba(238, 238, 238, 0.3);
         flex-wrap: wrap;
@@ -3526,7 +3507,7 @@ main {
     .mobile-nav-tabs a {
         color: #000;
         text-decoration: none;
-        font-size: 12px;
+        font-size: 9px;
         font-weight: 500;
         padding: 5px 8px;
         border-radius: 15px;
@@ -3624,7 +3605,7 @@ main {
     }
 
     .footer-section-networks a i {
-        font-size: 1rem;
+        font-size: 1.5rem;
 
     }
 
