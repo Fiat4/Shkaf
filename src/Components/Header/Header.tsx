@@ -185,6 +185,10 @@ const Header = forwardRef<HTMLDivElement, HeaderProps>(({ variant = 'default' },
 						<Link to="review" className="nav-link desktop-nav-link">
 							ОТЗЫВЫ
 						</Link>
+						<Link to="works" className="nav-link desktop-nav-link works-link">
+								НАШИ РАБОТЫ
+						</Link>
+						
 						{/* </li> */}
 						{/* <li> */}
 
@@ -278,7 +282,7 @@ const Header = forwardRef<HTMLDivElement, HeaderProps>(({ variant = 'default' },
 									Детские
 								</Link>
 							</li>
-							<Link to="works" className="nav-link desktop-nav-link">
+							<Link to="works" className="nav-link desktop-nav-link works-burger">
 								НАШИ РАБОТЫ
 							</Link>
 							<li>

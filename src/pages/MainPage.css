@@ -1280,6 +1280,25 @@ main {
     }
 }
 
+.works-link {
+    display: block;
+}
+
+.works-burger {
+    display: none;
+}
+
+@media (max-width: 1200px) {
+    .works-link {
+        display: none;
+    }
+
+    .works-burger {
+        display: block;
+    }
+}
+
+
 
 @media (max-width: 480px) {
     .consultation-form h2 {

@@ -186,7 +186,7 @@ const ProductPage: React.FC = () => {
                     <div className="product-main-title-container">
                         <div className='title-new-container'>
                             <h1 className="product-main-title">КУХНЯ "ДЛЯ ПРОВЕРКИ"</h1>
-                            <h5 className="mobile-new-secondary mobile-new-tag">НОВИНКА</h5>
+                            <h5 className="product-new-tag">НОВИНКА</h5>
                         </div>
 
 
@@ -203,7 +203,7 @@ const ProductPage: React.FC = () => {
                             <span className="price-original">136 000 РУБ</span>
                         </div>
                         <div className="button-container desktop-only">
-                            <button className="add-to-cart-button">ДОБАВИТЬ В КОРЗИНУ</button>
+                            <button className="product-add-to-cart-button">ДОБАВИТЬ В КОРЗИНУ</button>
                             <button className="favorite-button"><i className="fa-regular fa-heart"></i></button>
                         </div>
                     </div>

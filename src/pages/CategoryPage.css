@@ -19,8 +19,7 @@
 
 .products-grid__cat {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(215px, 1fr));
-    ;
+    grid-template-columns: repeat(3, 1fr);
     gap: 3vh;
     width: 95%;
     margin: 0 auto;
@@ -31,7 +30,6 @@
 .product-card__cat {
     display: flex;
     flex-direction: column;
-    height: 20rem;
     background: #fff;
     border-radius: 1vh;
     overflow: hidden;
@@ -39,6 +37,7 @@
     transition: none;
     cursor: pointer;
     position: relative;
+    height: fit-content;
 }
 
 .product-card__cat:hover {
@@ -47,7 +46,6 @@
 
 .product-image__cat {
     width: 100%;
-    height: 10rem;
     overflow: hidden;
 }
 
@@ -59,7 +57,7 @@
 }
 
 .product-info__cat {
-    padding: 2vh;
+    padding: 1rem;
     display: flex;
     flex-direction: column;
     height: 35%;
@@ -69,11 +67,10 @@
     font-family: 'Bounded';
     font-size: 1em;
     color: rgba(0, 0, 0, 0.8);
-    margin: 0 0 1vh 0;
+    margin: 0 0 .5rem 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 2vh;
 }
 
 .product-title__cat a {
@@ -105,8 +102,7 @@
     font-family: 'ALS Schlange sans';
     font-size: 0.9em;
     color: rgba(0, 0, 0, 0.6);
-    margin: 1vh 0;
-    text-wrap: nowrap;
+    margin: .5rem 0;
 }
 
 .product-price-container__cat {
@@ -238,7 +234,6 @@
 
 .breadcrumb_title {
     font-family: Unbounded;
-    font-size: 3em;
     line-height: 1;
     margin-top: 0;
     margin-bottom: 2vh;
@@ -1255,30 +1250,12 @@
 }
 
 @media (max-width: 1024px) {
-    .product-card__cat {
-        height: 20rem;
-    }
-
     .category-container__cat .search-button {
         top: 40px;
     }
 }
 
-@media (min-width: 1024px) {
-    .product-card__cat {
-        height: 22.5rem;
-    }
-}
-
 @media (min-width: 1440px) {
-
-    .product-card__cat {
-        height: 20rem;
-    }
-
-    .products-grid__cat {
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    }
 
     .product-button-container button {
         height: 3.5vh;
@@ -1289,23 +1266,9 @@
     }
 }
 
-@media (min-width: 1700px) {
-    .product-card__cat {
-        height: 22.5rem;
-    }
-}
-
 @media (min-width: 2560px) {
     .products-column__cat {
         max-width: 2400px;
-    }
-
-    .product-card__cat {
-        height: 25rem;
-    }
-
-    .products-grid__cat {
-        grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
     }
 
     .product-button-container button {
@@ -1330,10 +1293,6 @@
 
     .products-column__cat {
         max-width: 3400px;
-    }
-
-    .products-grid__cat {
-        grid-template-columns: repeat(auto-fill, minmax(600px, 1fr));
     }
 }
 
