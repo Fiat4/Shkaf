@@ -1,9 +1,15 @@
+<<<<<<< HEAD
 import { Link } from "react-router-dom"
 
 const ProductCard: React.FC = () => {
     return (
         <Link className='product-link' to='/product'>
             <div className="product-card__cat" >
+=======
+const ProductCard: React.FC = () => {
+    return (
+        <div className="product-card__cat" >
+>>>>>>> f413b4cf54b859b47b2b7ca185878092d6c89dca
             <div className="product-image__cat">
                 <img src="../img/kit.jpg" alt="Кухня 'Практик'" />
             </div>
@@ -24,7 +30,10 @@ const ProductCard: React.FC = () => {
                 </div>
             </div>
         </div>
+<<<<<<< HEAD
         </Link>
+=======
+>>>>>>> f413b4cf54b859b47b2b7ca185878092d6c89dca
 
     )
 }

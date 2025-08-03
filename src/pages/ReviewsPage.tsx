@@ -1,13 +1,19 @@
+<<<<<<< HEAD
 import { useState } from "react"
+=======
+>>>>>>> f413b4cf54b859b47b2b7ca185878092d6c89dca
 import Footer from "../Components/Footer/Footer"
 import Header from "../Components/Header/Header"
 import './MainPage.css'
 import './ReviewsPage.css'
 
 const ReviewsPage: React.FC = () => {
+<<<<<<< HEAD
     const [hover, setHover] = useState<number>(0)
     const [rating, setRating] = useState<number>(-1)
 
+=======
+>>>>>>> f413b4cf54b859b47b2b7ca185878092d6c89dca
     return (
         <>
             <Header />
@@ -33,6 +39,7 @@ const ReviewsPage: React.FC = () => {
                         <div className="form-group">
                             <label>ОЦЕНКА</label>
                             <div className="rating">
+<<<<<<< HEAD
                             {
                             [...Array(5)].map((item, index) => {
                                 index += 1
@@ -44,6 +51,18 @@ const ReviewsPage: React.FC = () => {
                             })
                         }
 
+=======
+                                <input type="radio" id="star5" name="rating" value="5" />
+                                <label htmlFor="star5"><i className="fa-solid fa-star"></i></label>
+                                <input type="radio" id="star4" name="rating" value="4" />
+                                <label htmlFor="star4"><i className="fa-solid fa-star"></i></label>
+                                <input type="radio" id="star3" name="rating" value="3" />
+                                <label htmlFor="star3"><i className="fa-solid fa-star"></i></label>
+                                <input type="radio" id="star2" name="rating" value="2" />
+                                <label htmlFor="star2"><i className="fa-solid fa-star"></i></label>
+                                <input type="radio" id="star1" name="rating" value="1" />
+                                <label htmlFor="star1"><i className="fa-solid fa-star"></i></label>
+>>>>>>> f413b4cf54b859b47b2b7ca185878092d6c89dca
                             </div>
                         </div>
 
