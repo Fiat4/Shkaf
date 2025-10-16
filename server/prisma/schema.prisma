@@ -1,0 +1,95 @@
+generator client {
+  provider = "prisma-client-js"
+  // output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Admin {
+  id         String   @id @unique @default(uuid())
+  username   String   @unique()
+  password   String
+  isActive   Boolean  @default(true)
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+model Product {
+  id    String @id @unique @default(uuid())
+  name  String @unique
+  price Int
+
+  height Int?
+  width  Int?
+  depth  Int?
+
+  category ProductCategory
+
+  description String
+  materials   String
+  avatar      String
+  imgs        String[]
+
+  viewsCount      Int   @default(0)
+  popularityScore Float @default(0)
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  orders  Order[]  @relation("ProductToOrders")
+  reviews Review[] @relation("ProductToReviews")
+
+  @@map("products")
+}
+
+model Review {
+  id         String   @id @unique @default(uuid())
+  username   String
+  rating     Int
+  email      String
+  review     String
+  avatar     String?
+  imgs       String[]
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  organization Boolean  @default(false)
+  productId    String?
+  product      Product? @relation("ProductToReviews", fields: [productId], references: [id])
+
+  @@map("reviews")
+}
+
+model Order {
+  id        String      @id @unique @default(uuid())
+  status    OrderStatus @default(ACTIVE)
+  userName  String
+  email     String
+  tel       String
+  comment   String?
+  productId String?
+  product   Product?    @relation("ProductToOrders", fields: [productId], references: [id])
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("orders")
+}
+
+enum OrderStatus {
+  ACTIVE
+  COMPLETED
+  CANCELED
+}
+
+enum ProductCategory {
+  KITCHEN
+  WALLS
+  HALLWAY
+  BATHROOM
+  WARDROBE
+  BEDROOMS
+}
