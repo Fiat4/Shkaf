@@ -2,6 +2,9 @@
 
 FROM node:20-bookworm-slim AS deps
 WORKDIR /app
+# Timeweb/RF: deb.debian.org часто очень медленный в build
+RUN sed -i 's|deb.debian.org|mirror.yandex.ru|g; s|security.debian.org|mirror.yandex.ru|g' /etc/apt/sources.list.d/debian.sources \
+    || sed -i 's|deb.debian.org|mirror.yandex.ru|g; s|security.debian.org|mirror.yandex.ru|g' /etc/apt/sources.list
 RUN apt-get update && apt-get install -y --no-install-recommends \
     openssl ca-certificates python3 make g++ \
     && rm -rf /var/lib/apt/lists/*
@@ -17,6 +20,8 @@ RUN npm run build
 FROM node:20-bookworm-slim AS runner
 WORKDIR /app
 ENV NODE_ENV=production
+RUN sed -i 's|deb.debian.org|mirror.yandex.ru|g; s|security.debian.org|mirror.yandex.ru|g' /etc/apt/sources.list.d/debian.sources \
+    || sed -i 's|deb.debian.org|mirror.yandex.ru|g; s|security.debian.org|mirror.yandex.ru|g' /etc/apt/sources.list
 RUN apt-get update && apt-get install -y --no-install-recommends \
     openssl ca-certificates \
     && rm -rf /var/lib/apt/lists/* \
