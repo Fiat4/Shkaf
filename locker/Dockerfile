@@ -3,6 +3,8 @@
 FROM node:20-bookworm-slim AS build
 WORKDIR /app
 COPY package.json package-lock.json* ./
+# CRA needs react-scripts from devDependencies during build
+ENV NPM_CONFIG_PRODUCTION=false
 RUN npm ci
 COPY . .
 ARG REACT_APP_API_URL=http://localhost:3000
