@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/static/css/main.5407c3e2.css",
+    "main.js": "/static/js/main.73f7af5c.js",
+    "static/media/fotoo.jpg": "/static/media/fotoo.27fb8e3b16c3d89553b9.jpg",
+    "static/media/Bounded-Variable.ttf": "/static/media/Bounded-Variable.aba1d3c4ccac5d954189.ttf",
+    "static/media/Unbounded-Regular.ttf": "/static/media/Unbounded-Regular.d2a446434fd598e4bb22.ttf",
+    "static/media/lw_logo.png": "/static/media/lw_logo.9011b79c21df38549986.png",
+    "static/media/Next-art.ttf": "/static/media/Next-art.03e3e91531fe3999b7e5.ttf",
+    "static/media/als-schlange-sans.ttf": "/static/media/als-schlange-sans.997fab9bb598ea3d2872.ttf",
+    "static/media/Vetrino.ttf": "/static/media/Vetrino.82169a5dac62b22377e0.ttf",
+    "static/media/Logo.png": "/static/media/Logo.62006e60e035808df3c3.png",
+    "index.html": "/index.html",
+    "static/media/Search.svg": "/static/media/Search.014017f831c78bc6fd64.svg",
+    "static/media/arrow-left.svg": "/static/media/arrow-left.792a6d164a932c6aa91f.svg",
+    "static/media/arrow-right.svg": "/static/media/arrow-right.172dcedfb8eb4b26455b.svg",
+    "main.5407c3e2.css.map": "/static/css/main.5407c3e2.css.map",
+    "main.73f7af5c.js.map": "/static/js/main.73f7af5c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5407c3e2.css",
+    "static/js/main.73f7af5c.js"
+  ]
+}
