@@ -11,4 +11,13 @@ echo "Seeding admin (if empty)..."
 npx prisma db seed || true
 
 echo "Starting API..."
-exec node dist/main.js
+if [ -f dist/main.js ]; then
+  exec node dist/main.js
+elif [ -f dist/src/main.js ]; then
+  exec node dist/src/main.js
+else
+  echo "ERROR: main.js not found under dist/"
+  ls -la dist || true
+  ls -la dist/src || true
+  exit 1
+fi
