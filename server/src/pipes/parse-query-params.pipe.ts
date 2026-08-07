@@ -23,14 +23,11 @@ export class TransformQueryPipe implements PipeTransform {
       }
     }
 
-    // Логика для 'status' будет перенесена в DTO
-
-    const sortFields = ['sortBy', 'order'];
-    sortFields.forEach((field) => {
-      if (transformed[field] && typeof transformed[field] === 'string') {
-        transformed[field] = transformed[field].toLowerCase();
-      }
-    });
+    // order: asc/desc — в нижний регистр
+    // sortBy не трогаем: поля вроде popularityScore регистрозависимы
+    if (transformed.order && typeof transformed.order === 'string') {
+      transformed.order = transformed.order.toLowerCase();
+    }
 
     return transformed;
   }

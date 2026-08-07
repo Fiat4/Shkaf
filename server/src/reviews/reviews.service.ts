@@ -77,11 +77,13 @@ export class ReviewsService {
   ]);
 
   if (!reviews || reviews.length === 0) {
-    throw new NotFoundException('Отзывов на продукт с данным идентификатором не найдено!');
+    return {
+      reviews: [],
+      averageRating: 0,
+      totalReviews: 0,
+      ratingDistribution: await this.getRatingDistributionWithPercentages(id),
+    };
   }
-    if (!reviews || reviews.length === 0) {
-      throw new NotFoundException('Отзывов на продукт с данным идентефикатором не найдено!')
-    }
 
     return {
       reviews,
@@ -91,8 +93,7 @@ export class ReviewsService {
     };
   }
 
-  async findAllByType(param) {
-    console.log(param)
+  async findAllByType(param: 'organization' | 'product') {
     const candidate = await this.prisma.review.findMany({
       where: {
         organization: param === "organization" ? true : false
@@ -151,7 +152,6 @@ export class ReviewsService {
         rating,
         email,
         review,
-        imgs: undefined,
         organization: true,
       },
     });

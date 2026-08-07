@@ -4,6 +4,7 @@ import { PrismaService } from 'src/prisma.service';
 import { AdminController } from './auth.controller';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { PassportModule } from '@nestjs/passport';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { JwtRefreshStrategy } from './strategies/jwt-refresh.strategy';
 
@@ -11,6 +12,7 @@ import { JwtRefreshStrategy } from './strategies/jwt-refresh.strategy';
   controllers: [AdminController],
   providers: [AuthService, PrismaService, JwtStrategy, JwtRefreshStrategy],
   imports: [
+    PassportModule.register({ defaultStrategy: 'jwt' }),
     JwtModule.registerAsync({
       imports: [ConfigModule],
       global: true,
@@ -22,6 +24,6 @@ import { JwtRefreshStrategy } from './strategies/jwt-refresh.strategy';
       }),
       inject: [ConfigService],
     }),
-  ]
+  ],
 })
-export class AuthModule { }
+export class AuthModule {}

@@ -73,6 +73,9 @@ model Order {
   productId String?
   product   Product?    @relation("ProductToOrders", fields: [productId], references: [id])
 
+  telegramChatId    String?
+  telegramMessageId Int?
+
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 

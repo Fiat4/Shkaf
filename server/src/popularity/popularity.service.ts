@@ -1,8 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { CreatePopularityDto } from './dto/create-popularity.dto';
-import { UpdatePopularityDto } from './dto/update-popularity.dto';
 import { PrismaService } from 'src/prisma.service';
-import { Prisma, Product } from 'generated/prisma';
 
 @Injectable()
 export class PopularityService {
@@ -10,33 +7,29 @@ export class PopularityService {
     RATING: 0.5,
     VIEWS: 0.05,
     ORDERS: 0.4,
-    REVIEWS_COUNT: 0.05
+    REVIEWS_COUNT: 0.05,
   };
+
   constructor(private readonly prisma: PrismaService) {}
 
   async handleView(id: string): Promise<void> {
-    console.log(id)
     await this.prisma.product.update({
-      where: {
-        id: id,
-      },
+      where: { id },
       data: {
         viewsCount: { increment: 1 },
       },
     });
-    await this.updateTotalScore(id)
+    await this.updateTotalScore(id);
   }
 
   async handleOrder(id: string): Promise<void> {
-    await this.updateTotalScore(id)
+    await this.updateTotalScore(id);
   }
 
-  async handleReview(id: string, newRate: number): Promise<void> {
+  async handleReview(id: string, _newRate?: number): Promise<void> {
     const candidate = await this.prisma.product.findUnique({
       where: { id },
-      include: {
-        reviews: true,
-      },
+      select: { id: true },
     });
     if (!candidate) {
       throw new NotFoundException(
@@ -44,9 +37,8 @@ export class PopularityService {
       );
     }
 
-    await this.updateTotalScore(candidate.id)
+    await this.updateTotalScore(candidate.id);
   }
-
 
   private calculateRatingScore(rating: number, reviewsCount: number): number {
     const confidence = 1 - Math.exp(-reviewsCount / 10);
@@ -64,31 +56,36 @@ export class PopularityService {
   private normalizeReviewsCount(count: number): number {
     return Math.min(count / 50, 1);
   }
-  
+
   private async calculateProductScore(productId: string) {
     const candidate = await this.prisma.product.findUnique({
-      where: {id: productId},
+      where: { id: productId },
       include: {
         orders: true,
-        reviews: true
-      }
-    })
+        reviews: true,
+      },
+    });
 
     if (!candidate) {
-      throw new NotFoundException('Пользователь не найден')
+      throw new NotFoundException('Продукт не найден');
     }
 
-    const averageRating = candidate.reviews.length > 0 
-  ? candidate.reviews.reduce((sum, rev) => sum + rev.rating, 0) / candidate.reviews.length
-  : 0;
+    const averageRating =
+      candidate.reviews.length > 0
+        ? candidate.reviews.reduce((sum, rev) => sum + rev.rating, 0) /
+          candidate.reviews.length
+        : 0;
 
-
-
-    const ratingScore = this.calculateRatingScore(averageRating, candidate.reviews.length);
+    const ratingScore = this.calculateRatingScore(
+      averageRating,
+      candidate.reviews.length,
+    );
     const viewsScore = this.normalizeViews(candidate.viewsCount);
     const ordersScore = this.normalizeOrders(candidate.orders.length);
-    const reviewsCountScore = this.normalizeReviewsCount(candidate.reviews.length);
-    console.log(candidate.reviews.reduce((sum, rev) => sum + rev.rating, 0) / candidate.reviews.length)
+    const reviewsCountScore = this.normalizeReviewsCount(
+      candidate.reviews.length,
+    );
+
     return (
       ratingScore * this.WEIGHTS.RATING +
       viewsScore * this.WEIGHTS.VIEWS +
@@ -99,10 +96,10 @@ export class PopularityService {
 
   async updateTotalScore(productId: string) {
     const popularityScore = await this.calculateProductScore(productId);
-    
+
     return await this.prisma.product.update({
       where: { id: productId },
-      data: { popularityScore }
+      data: { popularityScore },
     });
   }
 }

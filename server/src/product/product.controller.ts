@@ -57,7 +57,11 @@ export class ProductController {
     return this.productService.create(createProductDto, files);
   }
   @Get()
-  findAll(@Query() dto: QueryProductDto) {
+  @UsePipes(TransformQueryPipe)
+  findAll(
+    @Query(new ValidationPipe({ whitelist: true, transform: true }))
+    dto: QueryProductDto,
+  ) {
     return this.productService.findAll(dto);
   }
 

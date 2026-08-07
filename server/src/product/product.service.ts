@@ -11,7 +11,6 @@ import { FileService } from 'src/files/files.service';
 import { QueryProductDto } from './dto/querry-product.dto';
 import { ProductCategory } from '@prisma/client';
 import { PopularityService } from 'src/popularity/popularity.service';
-import { NotFoundError } from 'rxjs';
 
 @Injectable()
 export class ProductService {
@@ -54,6 +53,9 @@ export class ProductService {
       minHeight,
       minWidth,
       minDepth,
+      maxHeight,
+      maxWidth,
+      maxDepth,
       sortBy,
       order,
       page,
@@ -70,8 +72,15 @@ export class ProductService {
       ];
     }
 
-    if (category && Object.values(ProductCategory).includes(category)) {
-      where.category = category;
+    const normalizedCategory =
+      typeof category === 'string' ? category.toUpperCase() : category;
+    if (
+      normalizedCategory &&
+      Object.values(ProductCategory).includes(
+        normalizedCategory as ProductCategory,
+      )
+    ) {
+      where.category = normalizedCategory;
     }
 
     if (minPrice !== undefined && minPrice !== null && !isNaN(minPrice)) {
@@ -86,14 +95,26 @@ export class ProductService {
       where.height = { ...where.height, gte: minHeight };
     }
 
+    if (maxHeight !== undefined && maxHeight !== null && !isNaN(maxHeight)) {
+      where.height = { ...where.height, lte: maxHeight };
+    }
+
     if (minWidth !== undefined && minWidth !== null && !isNaN(minWidth)) {
       where.width = { ...where.width, gte: minWidth };
+    }
+
+    if (maxWidth !== undefined && maxWidth !== null && !isNaN(maxWidth)) {
+      where.width = { ...where.width, lte: maxWidth };
     }
 
     if (minDepth !== undefined && minDepth !== null && !isNaN(minDepth)) {
       where.depth = { ...where.depth, gte: minDepth };
     }
-  
+
+    if (maxDepth !== undefined && maxDepth !== null && !isNaN(maxDepth)) {
+      where.depth = { ...where.depth, lte: maxDepth };
+    }
+
     const data = await this.prisma.product.findMany({
       where,
       skip,
@@ -119,15 +140,11 @@ export class ProductService {
   }
 
   async findById(id: string) {
-    await this.PopularityService.handleView(id);
-
-    const candidate = this.prisma.product.findMany({
-      where: {
-        id,
-      },
+    const candidate = await this.prisma.product.findUnique({
+      where: { id },
       include: {
-        reviews: true
-      }
+        reviews: true,
+      },
     });
 
     if (!candidate) {
@@ -135,6 +152,8 @@ export class ProductService {
         'Продукта с таким идентификатором не существует',
       );
     }
+
+    await this.PopularityService.handleView(id);
 
     return candidate;
   }

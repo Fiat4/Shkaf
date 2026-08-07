@@ -1,31 +1,40 @@
 import {
-  BadRequestException,
   Injectable,
   NotFoundException,
+  BadRequestException,
+  Logger,
 } from '@nestjs/common';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { PrismaService } from '../prisma.service';
-import { OrderStatus, Prisma } from '@prisma/client';
+import { OrderStatus } from '@prisma/client';
 import { QueryOrderDto } from './dto/querry-order.dto';
 import { PopularityService } from 'src/popularity/popularity.service';
+import { TelegramService } from 'src/telegram/telegram.service';
 
 @Injectable()
 export class OrderService {
+  private readonly logger = new Logger(OrderService.name);
+
   constructor(
     private readonly prisma: PrismaService,
     private readonly PopularityService: PopularityService,
+    private readonly telegram: TelegramService,
   ) {}
-  async create(createOrderDto: CreateOrderDto) {
-    const { product, ...orderBaseData } = createOrderDto;
 
+  async create(createOrderDto: CreateOrderDto) {
+    const { product, comment, ...orderBaseData } = createOrderDto;
 
     if (!product) {
-      return this.prisma.order.create({
-        data: orderBaseData,
+      const newOrder = await this.prisma.order.create({
+        data: {
+          ...orderBaseData,
+          ...(comment !== undefined ? { comment } : {}),
+        },
+        include: { product: true },
       });
+      await this.safeNotifyNew(newOrder);
+      return newOrder;
     }
-
-    // Тут можем сделать проверку на то что есть активная заявка
 
     const candidate = await this.prisma.product.findUnique({
       where: { id: product },
@@ -35,19 +44,10 @@ export class OrderService {
       throw new NotFoundException('Товар с этим идентификатором не найден.');
     }
 
-    //   const existingProductIds = existingProducts.map(p => p.id);
-    //   const missingProducts = products.filter(id => !existingProductIds.includes(id));
-
-    //   if (missingProducts.length > 0) {
-    //     throw new NotFoundException(
-    //       `Продукты с ID не найдены: ${missingProducts.join(', ')}`
-    //     );
-    //   }
-    // }
-    await this.PopularityService.handleOrder(candidate.id);
     const newOrder = await this.prisma.order.create({
       data: {
         ...orderBaseData,
+        ...(comment !== undefined ? { comment } : {}),
         product: {
           connect: {
             id: candidate.id,
@@ -60,136 +60,116 @@ export class OrderService {
     });
 
     await this.PopularityService.handleOrder(candidate.id);
-    return newOrder
+    await this.safeNotifyNew(newOrder);
+    return newOrder;
   }
 
   async findAll(dto: QueryOrderDto) {
     const { status, type } = dto;
-    const where: any = {}; // Инициализируем 'where' как пустой объект
+    const where: any = {};
 
     if (status && Object.values(OrderStatus).includes(status)) {
-      where.status = status; // Присваиваем свойство 'status' напрямую
+      where.status = status;
     }
 
     if (type && type === 'CONSULTATION') {
-      where.product = null
+      where.product = null;
     } else if (type && type === 'ORDER') {
       where.product = {
-        isNot: null
-      }
+        isNot: null,
+      };
     }
-    return await this.prisma.order.findMany({ where });
+    return await this.prisma.order.findMany({
+      where,
+      include: { product: true },
+      orderBy: { created_at: 'desc' },
+    });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} order`;
+  async findOne(id: string) {
+    const order = await this.prisma.order.findUnique({
+      where: { id },
+      include: { product: true },
+    });
+
+    if (!order) {
+      throw new NotFoundException(`Заказ с идентификатором ${id} не найден`);
+    }
+
+    return order;
   }
 
-  async updateStatus(id: string, status: 'ACTIVE' | 'CANCELED' | 'COMPLETED') { 
+  async updateStatus(id: string, status: 'ACTIVE' | 'CANCELED' | 'COMPLETED') {
     const candidate = await this.prisma.order.findUnique({
-      where: {id}
-    })
+      where: { id },
+    });
 
     if (!candidate) {
-      throw new NotFoundException(`Заказ с индетефикатором ${id} не найден`);
+      throw new NotFoundException(`Заказ с идентификатором ${id} не найден`);
     }
 
-    return await this.prisma.order.update({
-      where: {id},
-      data: {
-        status: status
-      }
-    })
+    const updated = await this.prisma.order.update({
+      where: { id },
+      data: { status },
+      include: { product: true },
+    });
+
+    await this.safeNotifyStatus(updated);
+    return updated;
   }
-
-  // async update(id: string, updateOrderDto: UpdateOrderDto) {
-  //   const existingOrder = await this.prisma.order.findUnique({
-  //     where: { id },
-  //   });
-
-  //   if (!existingOrder) {
-  //     throw new NotFoundException(`Заказ с индетефикатором ${id} не найден`);
-  //   }
-
-  //   const { products: newProductIds, ...orderBaseData } = updateOrderDto;
-
-  //   const updateData: Prisma.OrderUpdateInput = {
-  //     ...orderBaseData,
-  //   };
-
-  //   if (newProductIds !== undefined) {
-  //     if (newProductIds.length > 0) {
-  //       const existingProductsInDb = await this.prisma.product.findMany({
-  //         where: {
-  //           id: { in: newProductIds },
-  //         },
-  //         select: { id: true },
-  //       });
-
-  //       const foundProductIds = existingProductsInDb.map((p) => p.id);
-  //       const missingProducts = newProductIds.filter(
-  //         (productId) => !foundProductIds.includes(productId),
-  //       );
-
-  //       if (missingProducts.length > 0) {
-  //         throw new NotFoundException(
-  //           `Продукты с ID не найдены: ${missingProducts.join(', ')}`,
-  //         );
-  //       }
-  //     }
-
-  //     const currentProductIdsInOrder = existingOrder.products.map(
-  //       (po) => po.productId,
-  //     );
-  //     const productsToAdd = newProductIds.filter(
-  //       (productId) => !currentProductIdsInOrder.includes(productId),
-  //     );
-
-  //     const productsToRemove = currentProductIdsInOrder.filter(
-  //       (productId) => !newProductIds.includes(productId),
-  //     );
-
-  //     if (productsToRemove.length > 0) {
-  //       await this.prisma.productsOnOrder.deleteMany({
-  //         where: {
-  //           orderId: id,
-  //           productId: { in: productsToRemove },
-  //         },
-  //       });
-  //     }
-
-  //     if (productsToAdd.length > 0) {
-  //       await this.prisma.productsOnOrder.createMany({
-  //         data: productsToAdd.map((productId) => ({
-  //           orderId: id,
-  //           productId: productId,
-  //         })),
-  //       });
-  //     }
-  //   }
-
-  //   return this.prisma.order.update({
-  //     where: { id },
-  //     data: updateData,
-  //     include: {
-  //       products: {
-  //         include: {
-  //           product: true,
-  //         },
-  //       },
-  //     },
-  //   });
-  // }
 
   async remove(id: string) {
     const candidate = await this.prisma.order.findFirst({
-      where: {
-        id,
-      },
+      where: { id },
     });
+
     if (!candidate) {
+      throw new NotFoundException(
+        'Заказ с таким идентификатором не найден',
+      );
+    }
+
+    if (candidate.status !== OrderStatus.CANCELED) {
       throw new BadRequestException(
-        'Продукт с таким идентификатором не найден',
+        'Удалять можно только отменённые заявки. Сначала отмените заявку.',
+      );
+    }
+
+    return await this.prisma.order.delete({
+      where: { id },
+    });
+  }
+
+  async removeAllCanceled(type?: string) {
+    const where: any = { status: OrderStatus.CANCELED };
+    const normalized = typeof type === 'string' ? type.toUpperCase() : '';
+    if (normalized === 'CONSULTATION') {
+      where.productId = null;
+    } else if (normalized === 'ORDER') {
+      where.productId = { not: null };
+    }
+
+    const result = await this.prisma.order.deleteMany({ where });
+    return { deleted: result.count };
+  }
+
+  private async safeNotifyNew(order: Parameters<TelegramService['notifyNewOrder']>[0]) {
+    try {
+      await this.telegram.notifyNewOrder(order);
+    } catch (err) {
+      this.logger.error(`Telegram notifyNewOrder failed for ${order.id}`, err);
+    }
+  }
+
+  private async safeNotifyStatus(
+    order: Parameters<TelegramService['notifyStatusChanged']>[0],
+  ) {
+    try {
+      await this.telegram.notifyStatusChanged(order);
+    } catch (err) {
+      this.logger.error(
+        `Telegram notifyStatusChanged failed for ${order.id}`,
+        err,
       );
     }
   }

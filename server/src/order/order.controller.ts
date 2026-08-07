@@ -3,13 +3,11 @@ import {
   Get,
   Post,
   Body,
-  Patch,
   Param,
   Delete,
   Query,
   UsePipes,
   ValidationPipe,
-  Req,
   UseInterceptors,
   Put,
   UseGuards,
@@ -19,7 +17,6 @@ import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
 import { QueryOrderDto } from './dto/querry-order.dto';
 import { TransformQueryPipe } from 'src/pipes/parse-query-params.pipe';
-import { Request } from 'express';
 import { AnyFilesInterceptor } from '@nestjs/platform-express';
 import { JWTAuthGuard } from 'src/auth/guards/jwt.guard';
 
@@ -33,25 +30,37 @@ export class OrderController {
     return this.orderService.create(createOrderDto);
   }
 
+  @UseGuards(JWTAuthGuard)
   @Get()
   @UsePipes(TransformQueryPipe)
   findAll(
     @Query(new ValidationPipe({ whitelist: true, transform: true }))
     dto: QueryOrderDto,
   ) {
-    console.log(dto)
     return this.orderService.findAll(dto);
   }
+
   @UseGuards(JWTAuthGuard)
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.orderService.findOne(+id);
+    return this.orderService.findOne(id);
   }
+
   @UseGuards(JWTAuthGuard)
   @Put(':id')
-  updateStatus(@Param('id') id: string, @Body() updateOrderDto: UpdateOrderDto) {
-    return this.orderService.updateStatus(id, updateOrderDto.status)
+  updateStatus(
+    @Param('id') id: string,
+    @Body() updateOrderDto: UpdateOrderDto,
+  ) {
+    return this.orderService.updateStatus(id, updateOrderDto.status);
   }
+
+  @UseGuards(JWTAuthGuard)
+  @Delete('canceled/all')
+  removeAllCanceled(@Query('type') type?: 'CONSULTATION' | 'ORDER' | string) {
+    return this.orderService.removeAllCanceled(type);
+  }
+
   @UseGuards(JWTAuthGuard)
   @Delete(':id')
   remove(@Param('id') id: string) {

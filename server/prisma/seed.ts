@@ -7,15 +7,23 @@ async function main() {
     const adminCount = await prisma.admin.count();
 
     if (adminCount === 0) {
-        const hashedPassword = await hash(process.env.ADMIN_PASSWORD || 'admin123');
+        const username = process.env.ADMIN_USERNAME;
+        const password = process.env.ADMIN_PASSWORD;
+
+        if (!username || !password) {
+            throw new Error(
+                'ADMIN_USERNAME и ADMIN_PASSWORD обязательны для первичного seed',
+            );
+        }
+
+        const hashedPassword = await hash(password);
 
         await prisma.admin.create({
             data: {
-                username: process.env.ADMIN_USERNAME || 'admin',
+                username,
                 password: hashedPassword,
-            }
+            },
         });
-
     }
 }
 
