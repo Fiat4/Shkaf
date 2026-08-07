@@ -1,0 +1,12 @@
+# Build
+dist
+node_modules
+coverage
+uploads
+.env
+.env.*
+*.log
+.git
+.vscode
+prisma/migrations
+scripts

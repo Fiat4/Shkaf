@@ -1,0 +1,21 @@
+# Telegram API reverse proxy (Kazakhstan / abroad)
+# Usage:
+#   cd deploy/kz-telegram-proxy
+#   docker compose up -d
+#
+# Then on RF server set:
+#   TELEGRAM_API_ROOT=https://YOUR_KZ_DOMAIN
+#
+# Telegraf calls: ${TELEGRAM_API_ROOT}/bot<token>/METHOD
+# This nginx forwards to https://api.telegram.org/bot<token>/METHOD
+
+services:
+  tg-proxy:
+    image: nginx:1.27-alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      # For HTTPS put this behind Caddy/Cloudflare or add certbot later
+      # - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
