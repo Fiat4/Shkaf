@@ -3,12 +3,12 @@
 FROM node:20-bookworm-slim AS build
 WORKDIR /app
 COPY package.json package-lock.json* ./
-# CRA: react-scripts lives in devDependencies — must install them for build
-RUN npm ci --include=dev
+RUN npm ci
 COPY . .
 ARG REACT_APP_API_URL=http://localhost:3000
 ENV REACT_APP_API_URL=$REACT_APP_API_URL
-RUN npm run build
+# Use npx so the local bin is always resolved
+RUN npx react-scripts build
 
 FROM nginx:1.27-alpine AS runner
 COPY nginx.conf /etc/nginx/conf.d/default.conf
