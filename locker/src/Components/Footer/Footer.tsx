@@ -32,7 +32,7 @@ const Footer = () => {
                                 <i className="fa-brands fa-telegram mobile-telegram-button"></i>
                             </button>
                             <p className="footer-text">Телефон: +7 (964) 777-25-25</p>
-                            <p className="footer-text">Email: info@example.com</p>
+                            <p className="footer-text">Email: lockerwood@mail.ru</p>
                             <Link to="/privacy-policy" className="privacy-policy-link">
                                 Персональные данные
                             </Link>
@@ -56,7 +56,7 @@ const Footer = () => {
                                 />
                             </button>
                             <p>Телефон: +7 (964) 777-25-25</p>
-                            <p>Email: info@example.com</p>
+                            <p>Email: lockerwood@mail.ru</p>
                             <Link to="/privacy-policy" className="privacy-policy-link" title="Политика конфиденциальности">
                                 Персональные данные
                             </Link>
