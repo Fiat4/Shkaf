@@ -31,7 +31,6 @@ const Footer = () => {
                                 <span>ПОДПИСАТЬСЯ НА РАССЫЛКУ</span>
                                 <i className="fa-brands fa-telegram mobile-telegram-button"></i>
                             </button>
-                            <address className="footer-text">Адрес: ул. Пушкина, д. 1, Москва, Россия</address>
                             <p className="footer-text">Телефон: +7 (964) 777-25-25</p>
                             <p className="footer-text">Email: info@example.com</p>
                             <Link to="/privacy-policy" className="privacy-policy-link">
@@ -56,7 +55,6 @@ const Footer = () => {
                                     alt="Телеграм"
                                 />
                             </button>
-                            <address>Адрес: ул. Пушкина, д. 1, Москва, Россия</address>
                             <p>Телефон: +7 (964) 777-25-25</p>
                             <p>Email: info@example.com</p>
                             <Link to="/privacy-policy" className="privacy-policy-link" title="Политика конфиденциальности">

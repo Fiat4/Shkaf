@@ -260,7 +260,7 @@ const Header = forwardRef<HTMLDivElement, HeaderProps>(({ variant = 'default' },
 
 						</li>
 						<div className="mobile-phone">
-							<span>+7 (977) 777-77-77</span>
+							<span>+7 (964) 777-25-25</span>
 						</div>
 						<div className={`search-container ${variant}`}>
 							<input 
@@ -338,7 +338,7 @@ const Header = forwardRef<HTMLDivElement, HeaderProps>(({ variant = 'default' },
 
 						<li className="icons-container">
 							<div className="phone-container">
-								<a href="tel:+79999999999" id="phone">
+								<a href="tel:+79647772525" id="phone">
 									<i className="fa-solid fa-phone"></i>
 								</a>
 								<span
@@ -347,7 +347,7 @@ const Header = forwardRef<HTMLDivElement, HeaderProps>(({ variant = 'default' },
 									aria-label="Скопировать номер телефона"
 									onClick={async () => {
 										try {
-											await navigator.clipboard.writeText("+79999999999");
+											await navigator.clipboard.writeText("+79647772525");
 											setIsPhoneCopied(true);
 											setTimeout(() => setIsPhoneCopied(false), 1500);
 										} catch {}
@@ -356,6 +356,15 @@ const Header = forwardRef<HTMLDivElement, HeaderProps>(({ variant = 'default' },
 								>
 									+7 (964) 777-25-25
 								</span>
+								<button
+									type="button"
+									className="header-order-btn"
+									onClick={() => {
+										window.dispatchEvent(new CustomEvent("lw-open-order"));
+									}}
+								>
+									Заявка
+								</button>
 							</div>
 						</li>
 					</ul>
