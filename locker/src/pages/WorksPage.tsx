@@ -13,7 +13,7 @@ const works = [
     },
     {
         id: 2,
-        images: ["/img/Portfolio/work_2_1.jpg", "/img/Portfolio/work_2_2.jpg", "/img/Portfolio/work_2_3.jpg"],
+        images: ["/img/Portfolio/Work_2_1.jpg", "/img/Portfolio/Work_2_2.jpg", "/img/Portfolio/Work_2_3.jpg"],
         title: "Кухня",
         description: "Современная, большая кухня"
     },

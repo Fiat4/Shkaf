@@ -319,7 +319,7 @@ const AboutUs: React.FC<AboutUsProps> = ({ category }) => {
                     
                     <div className="about-us-gallery-grid">
                         <div className="about-us-gallery-item about-us-gallery-item-large">
-                            <img src="./img/Portfolio/work_2_1.jpg" alt="Работа 1" />
+                            <img src="/img/Portfolio/Work_2_1.jpg" alt="Работа 1" />
                             <div className="about-us-gallery-overlay">
                                 <div className="about-us-gallery-info">
                                     <h4>Кухонный гарнитур</h4>
@@ -329,7 +329,7 @@ const AboutUs: React.FC<AboutUsProps> = ({ category }) => {
                         </div>
                         
                         <div className="about-us-gallery-item">
-                            <img src="./img/Portfolio/work_3_1.jpg" alt="Работа 2" />
+                            <img src="/img/Portfolio/work_3_1.jpg" alt="Работа 2" />
                             <div className="about-us-gallery-overlay">
                                 <div className="about-us-gallery-info">
                                     <h4>Стенка</h4>
@@ -339,7 +339,7 @@ const AboutUs: React.FC<AboutUsProps> = ({ category }) => {
                         </div>
                         
                         <div className="about-us-gallery-item">
-                            <img src="./img/Portfolio/work_5_1.jpg" alt="Работа 3" />
+                            <img src="/img/Portfolio/work_5_1.jpg" alt="Работа 3" />
                             <div className="about-us-gallery-overlay">
                                 <div className="about-us-gallery-info">
                                     <h4>Прихожая</h4>
@@ -349,7 +349,7 @@ const AboutUs: React.FC<AboutUsProps> = ({ category }) => {
                         </div>
                         
                         <div className="about-us-gallery-item">
-                            <img src="./img/Portfolio/work_1_1.jpg" alt="Работа 4" />
+                            <img src="/img/Portfolio/work_1_1.jpg" alt="Работа 4" />
                             <div className="about-us-gallery-overlay">
                                 <div className="about-us-gallery-info">
                                     <h4>Шкаф</h4>
