@@ -4,6 +4,7 @@ import { Link } from "react-router-dom"
 
 import Footer from "../Components/Footer/Footer"
 import Header from "../Components/Header/Header"
+import HeadMeta from "../Components/HeadMeta/HeadMeta"
 import './MainPage.css'
 import './ReviewsPage.css'
 import { useForm } from "react-hook-form"
@@ -44,6 +45,11 @@ const ReviewsPage: React.FC = () => {
 
     return (
         <>
+            <HeadMeta
+                title="Отзывы"
+                description="Отзывы клиентов о мебели Locker Wood. Оставьте свой отзыв о кухнях, шкафах и другой мебели на заказ."
+                keywords="отзывы, Locker Wood, мебель на заказ, отзывы клиентов"
+            />
             <Header />
 
             <main className="reviews-page">

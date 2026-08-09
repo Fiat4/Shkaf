@@ -8,10 +8,10 @@ import './PrivacyPolicy.css';
 const PrivacyPolicy: React.FC = () => {
     return (
         <>
-            <HeadMeta 
-                title="Политика конфиденциальности - LW"
-                description="Политика конфиденциальности и обработки персональных данных"
-                keywords="политика конфиденциальности, персональные данные, обработка данных"
+            <HeadMeta
+                title="Политика конфиденциальности"
+                description="Политика конфиденциальности и обработки персональных данных сайта Locker Wood (lockerwood.ru)."
+                keywords="политика конфиденциальности, персональные данные, Locker Wood"
             />
             <Header />
             <div className="breadcrumb breadcrumb--top">

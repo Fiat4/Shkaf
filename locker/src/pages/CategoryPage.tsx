@@ -73,9 +73,17 @@ const CategoryPage: React.FC = () => {
         }, 500);
     };
 
+    const categoryTitle = category ? getCategoryNameSafe(category) : 'Каталог';
+    const categoryImage = getCategoryImage().replace(/^\.\.\//, '/');
+
     return (
         <>
-            <HeadMeta />
+            <HeadMeta
+                title={`${categoryTitle} — каталог`}
+                description={`${categoryTitle} на заказ от Locker Wood. Смотрите каталог, размеры и фото — оставьте заявку на консультацию.`}
+                keywords={`${categoryTitle}, мебель на заказ, Locker Wood, каталог мебели`}
+                image={categoryImage}
+            />
             <Header/>
             <div className="category-container__cat">
                 <div className="filters-column">

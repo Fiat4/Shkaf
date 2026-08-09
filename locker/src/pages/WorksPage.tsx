@@ -105,10 +105,11 @@ const WorksPage: React.FC = () => {
 
     return (
         <>
-            <HeadMeta 
-                title="Locker Wood - Наши работы"
-                description="Портфолио работ Locker Wood - качественная мебель из натурального дерева"
-                keywords="мебель, портфолио, работы, дерево, интерьер"
+            <HeadMeta
+                title="Наши работы"
+                description="Портфолио Locker Wood: кухни, шкафы, прихожие и другая мебель из наших реализованных проектов."
+                keywords="портфолио мебели, наши работы, Locker Wood, кухни на заказ"
+                image="/img/Portfolio/Work_2_1.jpg"
             />
             <Header />
             

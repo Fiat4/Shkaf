@@ -21,7 +21,7 @@
     "lodash": "^4.17.21",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "react-helmet": "^2.0.0",
+    "react-helmet": "^6.1.0",
     "react-hook-form": "^7.62.0",
     "react-lodash": "^0.1.2",
     "react-photo-view": "^1.2.7",

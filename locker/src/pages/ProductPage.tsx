@@ -1,12 +1,11 @@
 import React, { useEffect, useState, useRef } from 'react'
 import './MainPage.css'
 import './ProductPage.css'
-import { data, Link, useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import Header from '../Components/Header/Header'
 import HeadMeta from '../Components/HeadMeta/HeadMeta'
 import Footer from '../Components/Footer/Footer'
 import Popular from '../Components/Popular/Popular'
-import { PRODUCT_INFO, RATING_DISTRIBUTION, PRODUCT_IMAGES } from '../utils/constants'
 import { ReviewModal, AllReviewsModal, OrderModal, FullscreenImageModal } from '../Components/Modals'
 import useApi from '../hook/UseApi'
 import IProduct from '../Types/Product'
@@ -57,9 +56,10 @@ const ProductPage: React.FC = () => {
 
     const params = useParams()
 
-    const {getProductsById, loading: productLoading, error:productError, data:productData} = useApi<IProduct[]>()
+    const {getProductsById, loading: productLoading, error:productError, data:productData} = useApi<IProduct>()
     const OrderApi = useApi<IOrder>()
     const createReviweApi = useApi<IReview>()
+    const product = productData
 
     const getReviewApi = useApi<{reviews: IReview[], averageRating: number,totalReviews: number, ratingDistribution: any }>()
     useEffect(() => {
@@ -118,7 +118,7 @@ const ProductPage: React.FC = () => {
             }
         };
 
-        if (productData && productData[0]) {
+        if (product) {
             document.addEventListener('keydown', handleKeyDown);
         }
 
@@ -128,8 +128,8 @@ const ProductPage: React.FC = () => {
     }, [productData, currentImageIndex]);
 
     const goToPreviousImage = () => {
-        if (productData && productData[0]) {
-            const totalImages = [productData[0].avatar, ...productData[0].imgs].length;
+        if (product) {
+            const totalImages = [product.avatar, ...product.imgs].length;
             setCurrentImageIndex((prevIndex) => 
                 prevIndex === 0 ? totalImages - 1 : prevIndex - 1
             );
@@ -137,8 +137,8 @@ const ProductPage: React.FC = () => {
     };
 
     const goToNextImage = () => {
-        if (productData && productData[0]) {
-            const totalImages = [productData[0].avatar, ...productData[0].imgs].length;
+        if (product) {
+            const totalImages = [product.avatar, ...product.imgs].length;
             setCurrentImageIndex((prevIndex) => 
                 prevIndex === totalImages - 1 ? 0 : prevIndex + 1
             );
@@ -150,9 +150,9 @@ const ProductPage: React.FC = () => {
     };
 
     const getCurrentImage = () => {
-        if (productData && productData[0]) {
-            const images = [productData[0].avatar, ...productData[0].imgs];
-            return images[currentImageIndex] || productData[0].avatar;
+        if (product) {
+            const images = [product.avatar, ...product.imgs];
+            return images[currentImageIndex] || product.avatar;
         }
         return '';
     };
@@ -206,32 +206,61 @@ const ProductPage: React.FC = () => {
         }
     };
 
-    if ((!productData && !productLoading) || productError || !params.id) {
-        return (<div>'fuck'</div>)
+    if (productLoading) {
+        return (
+            <>
+                <HeadMeta title="Загрузка товара" noindex />
+                <Header variant='searchless' />
+                <div style={{ padding: '80px', textAlign: 'center' }}>Загрузка товара...</div>
+            </>
+        )
     }
+
+    if (!params.id || productError || !product) {
+        return (
+            <>
+                <HeadMeta title="Товар не найден" noindex />
+                <Header variant='searchless' />
+                <div style={{ padding: '80px', textAlign: 'center' }}>
+                    <h1>Товар не найден</h1>
+                    <Link to="/">Вернуться на главную</Link>
+                </div>
+            </>
+        )
+    }
+
+    const productDescription =
+        product.description?.length > 160
+            ? `${product.description.slice(0, 157)}...`
+            : product.description || `${product.name} — мебель на заказ от Locker Wood.`;
 
     return (
         <>
-            <HeadMeta />
+            <HeadMeta
+                title={product.name}
+                description={productDescription}
+                keywords={`${product.name}, ${getRussianCategoryName(product.category)}, мебель на заказ, Locker Wood`}
+                image={product.avatar}
+            />
             <Header variant='searchless' />
 
             <div className="breadcrumb">
                 <Link to="/">Главная</Link>
                 <span>/</span>
-                <Link to={`/category/${productData ? productData[0].category.toLowerCase() : null}`}>{productData ? getRussianCategoryName(productData[0].category) : null}</Link>
+                <Link to={`/category/${product.category.toLowerCase()}`}>{getRussianCategoryName(product.category)}</Link>
                 <span>/</span>
-                <span className="current">{productData ? productData[0].name : null}</span>
+                <span className="current">{product.name}</span>
             </div>
-            {openOrderModal ?
+            {openOrderModal && (
                     <OrderModal 
                         onClose={() => setOpenOrderModal(false)}
                         api={OrderApi}
                         productId={params.id}
                         setNotification={() => setPopUp(true)} 
                     /> 
-                : null}
-                 {popUp && OrderApi.data  ? <PopUp message="Заявка успешно отправлена! Мы перезвоним вам позже!" status="success" showTime={3000} setStateFunction={setPopUp}/> : null}
-                            {popUp && OrderApi.error ? <PopUp message="Ошибка отправки! Попробуйте позже." status="error" showTime={3000} setStateFunction={setPopUp}/> : null}
+               )}
+                 {popUp && OrderApi.data && <PopUp message="Заявка успешно отправлена! Мы перезвоним вам позже!" status="success" showTime={3000} setStateFunction={setPopUp}/>}
+                            {popUp && OrderApi.error && <PopUp message="Ошибка отправки! Попробуйте позже." status="error" showTime={3000} setStateFunction={setPopUp}/>}
             <div className="category-container">
                 <div className="large-image-column">
                     <div className="main-image-container" ref={mainImageRef}>
@@ -260,7 +289,7 @@ const ProductPage: React.FC = () => {
                         </button>
                     </div>
                     <div className="carousel" ref={carouselRef}>
-                        {productData ? [productData[0].avatar, ...productData[0].imgs].map((item, i) => {
+                        {[product.avatar, ...product.imgs].map((item, i) => {
                             return (
                                 <div
                                     key={i}
@@ -270,14 +299,14 @@ const ProductPage: React.FC = () => {
                                     <img src={item} alt="Миниатюра" />
                                 </div>
                             )
-                        }) : null}
+                        })}
                         
                     </div>
                 </div>
                 <div className="right-column">
                     <div className="product-main-title-container">
                         <div className='title-new-container'>
-                            <h1 className="product-main-title">{productData ? productData[0].name : null}</h1>
+                            <h1 className="product-main-title">{product.name}</h1>
                         </div>
 
                         <div className='price-button-container'>
@@ -296,16 +325,16 @@ const ProductPage: React.FC = () => {
 
             <div className="menu-container desktop-only">
                 <div className="menu-items">
-                    <span className={`menu-item ${desktopDropdown === 'desc' ? 'active' : null}`} onClick={() => setDesktopDropdown('desc')}>ОПИСАНИЕ</span>
-                    <span className={`menu-item ${desktopDropdown === 'materials' ? 'active' : null}`} onClick={() => setDesktopDropdown('materials')}>СОСТАВ</span>
-                    <span className={`menu-item ${desktopDropdown === 'size' ? 'active' : null}`} onClick={() => setDesktopDropdown('size')}>РАЗМЕРЫ</span>
-                    <span className={`menu-item ${desktopDropdown === 'delviery' ? 'active' : null}`} onClick={() => setDesktopDropdown('delviery')}>ДОСТАВКА</span>
+                    <span className={`menu-item ${desktopDropdown === 'desc' ? 'active' : ''}`} onClick={() => setDesktopDropdown('desc')}>ОПИСАНИЕ</span>
+                    <span className={`menu-item ${desktopDropdown === 'materials' ? 'active' : ''}`} onClick={() => setDesktopDropdown('materials')}>СОСТАВ</span>
+                    <span className={`menu-item ${desktopDropdown === 'size' ? 'active' : ''}`} onClick={() => setDesktopDropdown('size')}>РАЗМЕРЫ</span>
+                    <span className={`menu-item ${desktopDropdown === 'delviery' ? 'active' : ''}`} onClick={() => setDesktopDropdown('delviery')}>ДОСТАВКА</span>
                 </div>
                 <div className="menu-content">
-                    {productData && desktopDropdown === 'desc' ?  <div>{productData[0].description}</div> : null}
-                    {productData && desktopDropdown === 'materials' ?  <div>{productData[0].materials}</div> : null}
-                    {productData && desktopDropdown === 'size' ?  <div>{productData[0].height} x {productData[0].width} x {productData[0].depth}</div> : null}
-                    {productData && desktopDropdown === 'delviery' ?  <div>Бесплатная доставка по Москве и области. Доставка транспортными компаниями.</div> : null}
+                    {desktopDropdown === 'desc' && <div>{product.description}</div>}
+                    {desktopDropdown === 'materials' && <div>{product.materials}</div>}
+                    {desktopDropdown === 'size' && <div>{product.width} x {product.height} x {product.depth}</div>}
+                    {desktopDropdown === 'delviery' && <div>Бесплатная доставка по Москве и области. Доставка транспортными компаниями.</div>}
                 </div>
             </div>
 
@@ -316,7 +345,7 @@ const ProductPage: React.FC = () => {
                         <i className="fa-solid fa-chevron-up product-arrow-icon-top" />
                     </div>
                     <div className={`product-collapsible-content ${mobileDropdown.desc ? "expanded" : ""}`}>
-                        <p>{productData && mobileDropdown.desc ?  <div>{productData[0].description}</div> : null}</p>
+                        <div>{product.description}</div>
                     </div>
                 </div>
                 <div className="product-collapsible-card" onClick={() => setMobileDropdown(v => ({...v, materials: !v.materials}))}>
@@ -326,7 +355,7 @@ const ProductPage: React.FC = () => {
                     </div>
                     <div className={`product-collapsible-content ${mobileDropdown.materials ? "expanded" : ""}`}>
                         <div className="composition-columns">
-                            {productData && mobileDropdown.materials ?  <div>{productData[0].materials}</div> : null}
+                            <div>{product.materials}</div>
                         </div>
                     </div>
                 </div>
@@ -335,21 +364,21 @@ const ProductPage: React.FC = () => {
                         <h4 className="mobile-new-secondary">РАЗМЕРЫ</h4>
                         <i className="fa-solid fa-chevron-up product-arrow-icon-top" />
                     </div>
-                    <div className={`product-collapsible-content ${ mobileDropdown.size ? 'expanded' : null}`} >
+                    <div className={`product-collapsible-content ${mobileDropdown.size ? 'expanded' : ''}`} >
                         <div className="composition-columns">
-                            {productData && mobileDropdown.size ?
+                            {mobileDropdown.size && (
                             <>
                                 <div className="column">
-                                    <p>• Ширина: {productData[0].width} см</p>
-                                    <p>• Высота: {productData[0].height} см</p>
+                                    <p>• Ширина: {product.width} см</p>
+                                    <p>• Высота: {product.height} см</p>
                                 </div>
                                 <div className="column">
-                                    <p>• Глубина: {productData[0].depth} см</p>
+                                    <p>• Глубина: {product.depth} см</p>
                                 </div>
                             </>
                                
 
-                            : null}
+                           )}
                         </div>
                     </div>
                 </div>
@@ -360,7 +389,7 @@ const ProductPage: React.FC = () => {
                         <i className="fa-solid fa-chevron-up product-arrow-icon-top" />
                     </div>
                     <div className={`product-collapsible-content ${mobileDropdown.delviery ? "expanded" : ""}`}>
-                        {productData && mobileDropdown.delviery ?  <div>Бесплатная доставка в пределах мкад. Доставка в регионы транспортными компаниями.</div> : null}
+                        <div>Бесплатная доставка в пределах мкад. Доставка в регионы транспортными компаниями.</div>
                     </div>
                 </div>
             </div>
@@ -510,18 +539,17 @@ const ProductPage: React.FC = () => {
                                 ОСТАВИТЬ ОТЗЫВ
                             </button>
                         </div>
-                    {getReviewApi.data ?
+                    {getReviewApi.data && (
                         <div className="reviews-preview">
-                            {getReviewApi.data && !getReviewApi.loading && !getReviewApi.error ? 
+                            {!getReviewApi.loading && !getReviewApi.error &&
                             getReviewApi.data.reviews.slice(0,2).map((review: IReview) => (
                                 <ReviewCard 
                                     key={review.id} 
                                     review={review} 
                                 />
-                            )) : null}
-                            
+                            ))}
                         </div>
-                        : null}
+                    )}
                        
                         { getReviewApi.data && getReviewApi.data.reviews.length > 2 && (
                                 <button 
@@ -543,14 +571,15 @@ const ProductPage: React.FC = () => {
                     api={createReviweApi}
                     setNotification={() => setPopUp(true)} 
                 />
-                {popUp && createReviweApi.data  ? <PopUp message="Спасибо за отзыв!" status="success" showTime={3000} setStateFunction={setPopUp}/> : null}
-                {popUp && createReviweApi.error ? <PopUp message="Ошибка отправки! Попробуйте позже." status="error" showTime={3000} setStateFunction={setPopUp}/> : null}
-                        {getReviewApi.data ?
+                {popUp && createReviweApi.data && <PopUp message="Спасибо за отзыв!" status="success" showTime={3000} setStateFunction={setPopUp}/>}
+                {popUp && createReviweApi.error && <PopUp message="Ошибка отправки! Попробуйте позже." status="error" showTime={3000} setStateFunction={setPopUp}/>}
+                        {getReviewApi.data && (
                 <AllReviewsModal
                     isOpen={showAllReviewsModal}
                     onClose={() => setShowAllReviewsModal(false)}
                     reviews={getReviewApi.data.reviews}
-                /> : null}
+                />
+                        )}
             </div> 
             <Popular dynamicText='МОЖЕТ ПОНРАВИТЬСЯ' />
 
@@ -559,7 +588,7 @@ const ProductPage: React.FC = () => {
                 onClose={closeFullscreen}
                 currentImage={getCurrentImage()}
                 currentIndex={currentImageIndex}
-                totalImages={productData ? [productData[0].avatar, ...productData[0].imgs].length : 1}
+                totalImages={[product.avatar, ...product.imgs].length}
                 onPrevious={goToPreviousImage}
                 onNext={goToNextImage}
                 onTouchStart={onTouchStart}

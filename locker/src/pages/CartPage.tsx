@@ -4,65 +4,92 @@ import Header from '../Components/Header/Header'
 import Footer from '../Components/Footer/Footer'
 import HeadMeta from '../Components/HeadMeta/HeadMeta'
 import Popular from '../Components/Popular/Popular'
+import { Link } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import IProduct from '../Types/Product'
+
+const FAVORITES_KEY = 'favorites'
+
 const CartPage: React.FC = () => {
+    const [favorites, setFavorites] = useState<IProduct[]>([])
+
+    useEffect(() => {
+        try {
+            const raw = localStorage.getItem(FAVORITES_KEY)
+            setFavorites(raw ? JSON.parse(raw) : [])
+        } catch {
+            setFavorites([])
+        }
+    }, [])
+
+    const removeFavorite = (id: string) => {
+        const next = favorites.filter((item) => item.id !== id)
+        setFavorites(next)
+        localStorage.setItem(FAVORITES_KEY, JSON.stringify(next))
+    }
+
     return (
         <>
             <HeadMeta
-                title="Главная"
-                description="Магазин мебели - качественная мебель для вашего дома"
-                keywords="мебель, шкафы, кровати, кухни, стенки, интерьер"
+                title="Избранное"
+                description="Сохранённые товары Locker Wood — мебель на заказ, которая вам понравилась."
+                keywords="избранное, мебель на заказ, Locker Wood"
+                noindex
             />
             <Header variant='searchless' />
 
             <main className="cart-page">
                 <div className="breadcrumbs">
-                    <a href="/">Главная</a> / <span>Корзина</span>
+                    <Link to="/">Главная</Link> / <span>Избранное</span>
                 </div>
 
                 <div className="cart-container">
                     <div className="cart-items">
                         <h1 className='desktop-only'>ИЗБРАННОЕ</h1>
-                        <div className="cart-item">
-                            <div className="item-image">
-                                <img src="img/bed.jpg" alt="КРОВАТЬ 'НАЗВАНИЕ'" />
+                        {favorites.length === 0 && (
+                            <div style={{ padding: '24px 0' }}>
+                                <p>В избранном пока ничего нет.</p>
+                                <Link to="/">Перейти в каталог</Link>
                             </div>
-                            <div className="item-details">
-                                <h3>КРОВАТЬ "НАЗВАНИЕ"</h3>
+                        )}
+                        {favorites.map((item) => (
+                            <div className="cart-item" key={item.id}>
+                                <div className="item-image">
+                                    <Link to={`/product/${item.id}`}>
+                                        <img src={item.avatar} alt={item.name} />
+                                    </Link>
+                                </div>
+                                <div className="item-details">
+                                    <h3>
+                                        <Link to={`/product/${item.id}`}>{item.name}</Link>
+                                    </h3>
+                                    <p>{item.price?.toLocaleString('ru-RU')} ₽</p>
+                                </div>
+                                <div className='button-wrapper'>
+                                    <button
+                                        className="remove-item"
+                                        onClick={() => removeFavorite(item.id)}
+                                        type="button"
+                                    >
+                                        <i className="fa-solid fa-xmark"></i>
+                                    </button>
+                                </div>
                             </div>
-                            <div className='button-wrapper'>
-                                <button className="remove-item">
-                                    <i className="fa-solid fa-xmark"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div className="cart-item">
-                            <div className="item-image">
-                                <img src="img/kit.jpg" alt="КУХНЯ 'НАЗВАНИЕ'" />
-                            </div>
-                            <div className="item-details">
-                                <h3>КУХНЯ "НАЗВАНИЕ"</h3>
-                            </div>
-                            <div className='button-wrapper'>
-                                <button className="remove-item">
-                                    <i className="fa-solid fa-xmark"></i>
-                                </button>
-                            </div>
-                        </div>
+                        ))}
                     </div>
                     <div className="cart-summary">
                         <h2>ВАШ ЗАПРОС</h2>
                         <div className="summary-details">
                             <div className="summary-row">
-                                <span>2 ТОВАРА</span>
+                                <span>{favorites.length} ТОВАР(ОВ)</span>
                             </div>
                         </div>
-                        <div className='checkout-wrapper' style={{ display: 'flex', flexDirection: 'column', gap: '12px', alignItems: 'stretch' }}>
-                            <input type="tel" className="phone-input" placeholder="Ваш телефон" style={{ padding: '12px', fontSize: '18px', border: '1px solid #ccc', borderRadius: '6px' }} />
-                            <input type="text" className="size-input" placeholder="Желаемые размеры (ДxШxВ, см)" style={{ padding: '12px', fontSize: '18px', border: '1px solid #ccc', borderRadius: '6px' }} />
-                            <button className="checkout-btn">УЗНАТЬ ЦЕНУ</button>
-                        </div>
                         <div className="delivery-info">
-                            <p style={{ fontSize: '18px', color: '#444' }}>Стоимость рассчитывается индивидуально для каждого заказа. Мы свяжемся с вами для уточнения деталей и расчёта стоимости.</p>
+                            <p style={{ fontSize: '18px', color: '#444' }}>
+                                Чтобы оформить заказ, откройте карточку товара и
+                                отправьте заявку. Стоимость рассчитывается
+                                индивидуально.
+                            </p>
                         </div>
                     </div>
                 </div>

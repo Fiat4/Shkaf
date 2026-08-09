@@ -13,9 +13,11 @@ const MainPage = () => {
 	return (
 		<React.Fragment>
 			<HeadMeta
-				title="LW - Главная"
-				description="Магазин мебели - качественная мебель для вашего дома"
-				keywords="мебель, шкафы, кровати, кухни, стенки, интерьер"
+				title="Locker Wood — мебель на заказ"
+				fullTitle
+				description="Кухни, шкафы, прихожие и другая мебель на заказ. Locker Wood — индивидуальный подход и качественные материалы."
+				keywords="мебель на заказ, кухни, шкафы, прихожие, стенки, Locker Wood"
+				image="/img/kitchen_mainn.jpg"
 			/>
 			<Header />
 			<main id="scrolled">
