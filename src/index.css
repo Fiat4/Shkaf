@@ -1,0 +1,41 @@
+:root {
+  --font-display: 'Fraunces', 'Iowan Old Style', 'Palatino Linotype', Palatino, serif;
+  --font-body: 'Sora', 'Avenir Next', 'Segoe UI', sans-serif;
+  --node-0: #1f4f40;
+  --node-1: #2f6b57;
+  --node-2: #4f8f74;
+  --node-3: #7aa993;
+  --file-fill: #c48a3a;
+  color: #163429;
+  background: #e8efe6;
+  font-family: var(--font-body);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+::selection {
+  background: rgba(47, 107, 87, 0.22);
+}

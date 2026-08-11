@@ -1,0 +1,78 @@
+.path-bar {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.path-bar__label {
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #6f7f75;
+  font-weight: 600;
+}
+
+.path-bar__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.path-bar__input {
+  flex: 1 1 280px;
+  min-width: 0;
+  border: 1px solid rgba(33, 74, 60, 0.18);
+  background: rgba(255, 252, 246, 0.82);
+  color: #163429;
+  border-radius: 999px;
+  padding: 0.85rem 1.15rem;
+  font: inherit;
+  font-size: 0.98rem;
+  outline: none;
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.path-bar__input:focus {
+  border-color: rgba(47, 107, 87, 0.55);
+  box-shadow: 0 0 0 4px rgba(47, 107, 87, 0.12);
+}
+
+.path-bar__btn {
+  border: 0;
+  border-radius: 999px;
+  padding: 0.85rem 1.15rem;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 140ms ease, opacity 140ms ease, background 140ms ease;
+}
+
+.path-bar__btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.path-bar__btn:not(:disabled):hover {
+  transform: translateY(-1px);
+}
+
+.path-bar__btn--primary {
+  background: linear-gradient(135deg, #1f4f40, #2f6b57);
+  color: #f7f3ea;
+}
+
+.path-bar__btn--ghost {
+  background: rgba(255, 252, 246, 0.7);
+  color: #1f4f40;
+  border: 1px solid rgba(33, 74, 60, 0.16);
+}
+
+.path-bar__btn--soft {
+  background: rgba(196, 138, 58, 0.16);
+  color: #7a5318;
+}
+
+.path-bar__progress {
+  margin: 0;
+  font-size: 0.86rem;
+  color: #5d7268;
+}
