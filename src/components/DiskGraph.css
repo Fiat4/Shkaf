@@ -1,0 +1,174 @@
+.disk-graph {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 280px;
+  gap: 1.25rem;
+  min-height: 0;
+  height: 100%;
+}
+
+.disk-graph__canvas-wrap {
+  position: relative;
+  overflow: auto;
+  border-radius: 28px;
+  background:
+    radial-gradient(120% 80% at 0% 0%, rgba(255, 255, 255, 0.55), transparent 55%),
+    linear-gradient(160deg, rgba(255, 252, 245, 0.72), rgba(214, 230, 220, 0.55));
+  border: 1px solid rgba(47, 107, 87, 0.12);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.65);
+}
+
+.disk-graph__svg {
+  display: block;
+  width: max(100%, 900px);
+  min-height: 520px;
+  height: auto;
+}
+
+.disk-graph__link {
+  fill: none;
+  stroke-linecap: round;
+  opacity: 0;
+  animation: linkDraw 0.9s ease forwards;
+}
+
+.disk-graph__node {
+  opacity: 0;
+  animation: nodeIn 0.55s ease forwards;
+}
+
+.disk-graph__node.is-interactive {
+  cursor: pointer;
+}
+
+.disk-graph__node.is-interactive:hover .disk-graph__dot {
+  stroke: #1d4337;
+  stroke-width: 2;
+}
+
+.disk-graph__halo {
+  opacity: 0.16;
+}
+
+.disk-graph__label,
+.disk-graph__size {
+  text-anchor: middle;
+  pointer-events: none;
+  user-select: none;
+}
+
+.disk-graph__label {
+  fill: #17352c;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.disk-graph__size {
+  fill: #5d7268;
+  font-family: var(--font-body);
+  font-size: 11px;
+}
+
+.disk-graph__side {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  padding: 1.35rem 1.25rem;
+  border-radius: 24px;
+  background:
+    linear-gradient(180deg, rgba(255, 250, 240, 0.9), rgba(232, 239, 230, 0.75));
+  border: 1px solid rgba(47, 107, 87, 0.12);
+}
+
+.disk-graph__side-kicker {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.72rem;
+  color: #7a6a4d;
+  font-weight: 600;
+}
+
+.disk-graph__side-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.65rem;
+  font-weight: 560;
+  line-height: 1.15;
+  color: #163429;
+}
+
+.disk-graph__side-path {
+  margin: 0;
+  font-size: 0.82rem;
+  color: #61766c;
+  word-break: break-all;
+  line-height: 1.4;
+}
+
+.disk-graph__metrics {
+  margin: 0.75rem 0 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.disk-graph__metrics div {
+  display: grid;
+  gap: 0.15rem;
+}
+
+.disk-graph__metrics dt {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #7d8d84;
+}
+
+.disk-graph__metrics dd {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  color: #1a3d32;
+}
+
+.disk-graph__hint {
+  margin: auto 0 0;
+  font-size: 0.86rem;
+  line-height: 1.45;
+  color: #5f7268;
+}
+
+@keyframes linkDraw {
+  from {
+    opacity: 0;
+    stroke-dasharray: 420;
+    stroke-dashoffset: 420;
+  }
+  to {
+    opacity: 0.85;
+    stroke-dasharray: 420;
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes nodeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 960px) {
+  .disk-graph {
+    grid-template-columns: 1fr;
+    grid-template-rows: minmax(420px, 1fr) auto;
+  }
+
+  .disk-graph__side {
+    order: -1;
+  }
+}
