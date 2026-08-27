@@ -8,6 +8,8 @@ RUN sed -i 's|deb.debian.org|mirror.yandex.ru|g; s|security.debian.org|mirror.ya
 RUN apt-get update && apt-get install -y --no-install-recommends \
     openssl ca-certificates python3 make g++ \
     && rm -rf /var/lib/apt/lists/*
+# RF: binaries.prisma.sh часто таймаутится — зеркало npmmirror
+ENV PRISMA_ENGINES_MIRROR=https://registry.npmmirror.com/-/binary/prisma
 COPY package.json package-lock.json ./
 COPY prisma ./prisma
 RUN npm ci
