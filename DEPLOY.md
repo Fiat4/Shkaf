@@ -134,14 +134,22 @@ docker compose logs -f api | grep -i telegram
 
 Самый быстрый вариант — Cloudflare Proxy (оранжевое облако) или Caddy перед compose.
 
-Пример Caddyfile на хосте РФ:
+Пример Caddyfile на хосте РФ (TLS 1.2+, web на порту 8080):
 
 ```caddy
+(tls12) {
+  tls {
+    protocols tls1.2 tls1.3
+  }
+}
+
 lockerwood.ru, www.lockerwood.ru {
-  reverse_proxy 127.0.0.1:80
+  import tls12
+  reverse_proxy 127.0.0.1:8080
 }
 
 api.lockerwood.ru {
+  import tls12
   reverse_proxy 127.0.0.1:3000
 }
 ```
